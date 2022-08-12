@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
-    appInitialized: false
+    appInitialized: false as boolean
 }
 
 const appSlice = createSlice({

@@ -1,10 +1,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import appReducer from './reducers/app-slice'
 import projectsReducer from './reducers/projects-slice'
+import defaultPagesReducer from "./reducers/defaultPages-slice"
 
 const rootReducer = combineReducers({
     appReducer,
     projectsReducer,
+    defaultPagesReducer,
 })
 
 const store = configureStore({
