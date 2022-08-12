@@ -10,7 +10,8 @@ const appSlice = createSlice({
     reducers: {
         setAppInitialized: (state, action: PayloadAction<boolean>) => {
             state.appInitialized = action.payload
-        }
+        },
+
     }
 })
 
@@ -37,4 +38,4 @@ export const appInitialization = () => {
 
 export const { setAppInitialized } = appSlice.actions
 
-export default appSlice.reducer;
+export default appSlice.reducer
