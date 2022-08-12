@@ -11,7 +11,6 @@ const appSlice = createSlice({
         setAppInitialized: (state, action: PayloadAction<boolean>) => {
             state.appInitialized = action.payload
         },
-
     }
 })
 
@@ -19,8 +18,8 @@ export const appInitialization = () => {
     const receivedLocalStorage = {...localStorage}
     const localStorageKeys = Object.keys(receivedLocalStorage)
     const initializationInfo = {
-      arrayNecessaryItems: ['AllProjectTasks', 'Today'],
-      objectNecessaryItems: ['Projects'],
+      arrayNecessaryItems: ['allProjectTasks', 'today'],
+      objectNecessaryItems: ['projects'],
     }
     initializationInfo.arrayNecessaryItems.forEach(item => {
       if(!localStorageKeys.includes(item)){

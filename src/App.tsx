@@ -28,7 +28,7 @@ const App = () => {
       <div className={s.app}>
         <Routes>
           <Route path='/' element={<MainLayout/>}>
-            <Route path='/' element={<TasksPageCreator/>}/>
+            <Route path='/*' element={<TasksPageCreator/>}/>
           </Route>
           <Route path='*' element={<NotFound/>}/>
         </Routes>

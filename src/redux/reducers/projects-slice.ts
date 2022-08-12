@@ -4,7 +4,7 @@ import { rootStateType } from "../store";
 
 
 const initialState = {
-    AllProjectTasks: [] as taskType[],
+    allProjectsTasks: [] as taskType[],
     projects: {} as projectsType,
 }
 
@@ -12,21 +12,21 @@ const projectsSlice = createSlice({
     name: 'projects',
     initialState: initialState,
     reducers: {
-        addProject: (state, action: PayloadAction<{name: string}>) => {
-            const { name } = action.payload
-            const isExist = checkProjectExisting(state.projects, name)
+        addProject: (state, action: PayloadAction<{projectName: string}>) => {
+            const { projectName } = action.payload
+            const isExist = checkProjectExisting(state.projects, projectName)
             if(!isExist){
-                state.projects[name] = []
+                state.projects[projectName] = []
                 localStorage.setItem('projects', JSON.stringify(state.projects))
             }else{
                 console.error('project already exist')
             }
         },
-        deleteProject: (state, action: PayloadAction<{name: string}>) => {
-            const { name } = action.payload
-            const isExist = checkProjectExisting(state.projects, name)
+        deleteProject: (state, action: PayloadAction<{projectName: string}>) => {
+            const { projectName } = action.payload
+            const isExist = checkProjectExisting(state.projects, projectName)
             if(isExist){
-                delete state.projects[name]
+                delete state.projects[projectName]
                 localStorage.setItem('project', JSON.stringify(state.projects))
             }else{
                 console.error('such project not founded')
@@ -35,8 +35,10 @@ const projectsSlice = createSlice({
         addTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
             const { projectName, task } = action.payload
             const isExist = checkTaskExisting(state.projects[projectName], task.name)
+            debugger
             if(!isExist){
                 state.projects[projectName].push(task)
+                state.allProjectsTasks.push(task)
                 localStorage.setItem('project', JSON.stringify(state.projects))
             }else{
                 console.error('such task already exist')
@@ -49,6 +51,8 @@ const projectsSlice = createSlice({
                 state.projects[projectName].forEach((task, index) => {
                     if(task.id === taskForDeleting.id){
                         state.projects[projectName].splice(index, 1)
+                        const indexInAllProjectTasks = state.allProjectsTasks.indexOf(task)
+                        state.allProjectsTasks.splice(indexInAllProjectTasks, 1)
                     }
                 })
                 localStorage.setItem('project', JSON.stringify(state.projects))
@@ -73,7 +77,7 @@ const checkTaskExisting = (project: taskType[], taskName: string) => {
     return isExist
 }
 
-export const {  } = projectsSlice.actions
+export const { addProject, deleteProject, addTask, deleteTask } = projectsSlice.actions
 
 export default projectsSlice.reducer
 

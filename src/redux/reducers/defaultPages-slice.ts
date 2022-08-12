@@ -4,7 +4,7 @@ import { taskType } from "../../types/types";
 
 
 const initialState = {
-    Today: [] as taskType[]
+    today: [] as taskType[]
 }
 
 const defaultPagesSlice = createSlice({
