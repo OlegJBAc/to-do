@@ -7,7 +7,9 @@ import NotFound from './components/notFound/notFound';
 import TasksPageCreator from './components/tasksPageCreator/tasksPageCreator';
 import Loader from './general/loader/loader';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
-import { appInitialization, setAppInitialized } from './redux/reducers/app-slice';
+import { setAppInitialized } from './redux/reducers/app-slice';
+import { defaultPagesInitialize } from './redux/reducers/defaultPages-slice';
+import { projectTasksInitialize } from './redux/reducers/projects-slice';
 import { getAppInitialized } from './redux/selectors';
 
 
@@ -15,10 +17,40 @@ const App = () => {
   const dispatch = useAppDispatch()
   const appInitialized = useAppSelector(getAppInitialized)
 
+  // ***===========================================APP INITIALIZATION===========================================*** //
   useEffect(() => {
+      const appInitialization = () => {
+        const receivedLocalStorage = {...localStorage}
+        const localStorageKeys = Object.keys(receivedLocalStorage)
+        const initializationInfo = {
+          arrayNecessaryItems: ['allProjectsTasks'],
+          objectNecessaryItems: ['projects', 'defaultPages'],
+        }
+        initializationInfo.arrayNecessaryItems.forEach(item => {
+          if(!localStorageKeys.includes(item)){
+            localStorageKeys.push(item)
+            localStorage.setItem(item, JSON.stringify([]))
+          }
+        })
+        initializationInfo.objectNecessaryItems.forEach(item => {
+          if(!localStorageKeys.includes(item)){
+            localStorageKeys.push(item)
+            if(item === 'defaultPages'){
+              localStorage.setItem(item, JSON.stringify({ today: [] }))
+            }else{
+              localStorage.setItem(item, JSON.stringify({}))
+            }
+          }
+        })
+        const projects: string | null = localStorage.getItem('projects')
+        const defaultPages: string | null = localStorage.getItem('defaultPages')
+        dispatch(projectTasksInitialize(projects ? JSON.parse(projects) : null))
+        dispatch(defaultPagesInitialize(defaultPages ? JSON.parse(defaultPages) : null))
+    }
     appInitialization()
     dispatch(setAppInitialized(true))
   }, [])
+  // ***===========================================APP INITIALIZATION===========================================*** //
 
   if(!appInitialized){
     return <Loader/>

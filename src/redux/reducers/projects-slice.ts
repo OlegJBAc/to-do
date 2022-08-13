@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { taskType } from "../../types/types";
+import { projectsType, taskType } from "../../types/types";
 import { rootStateType } from "../store";
 
 
@@ -8,10 +8,24 @@ const initialState = {
     projects: {} as projectsType,
 }
 
+
 const projectsSlice = createSlice({
     name: 'projects',
     initialState: initialState,
     reducers: {
+        projectTasksInitialize: (state, action: PayloadAction<projectsType | null>) => {
+            if(action.payload){
+                state.projects = action.payload
+                const projectsKeys = Object.keys(action.payload)
+                projectsKeys.forEach(project => {
+                    state.projects[project].forEach(task => {
+                        state.allProjectsTasks.push(task)
+                    })
+                })
+            }else{
+                console.error('problem with projects initializing')
+            }
+        },
         addProject: (state, action: PayloadAction<{projectName: string}>) => {
             const { projectName } = action.payload
             const isExist = checkProjectExisting(state.projects, projectName)
@@ -35,11 +49,11 @@ const projectsSlice = createSlice({
         addTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
             const { projectName, task } = action.payload
             const isExist = checkTaskExisting(state.projects[projectName], task.name)
-            debugger
             if(!isExist){
                 state.projects[projectName].push(task)
                 state.allProjectsTasks.push(task)
-                localStorage.setItem('project', JSON.stringify(state.projects))
+                localStorage.setItem('projects', JSON.stringify(state.projects))
+                localStorage.setItem('allProjectsTasks', JSON.stringify(state.allProjectsTasks))
             }else{
                 console.error('such task already exist')
             }
@@ -69,19 +83,18 @@ const checkProjectExisting = (projects: projectsType, projectName: string) => {
 }
 const checkTaskExisting = (project: taskType[], taskName: string) => {
     let isExist = false
-    project.forEach(task => {
-        if(task.name === taskName){
-            isExist = true
-        }
-    })
+    if(project.length !== 0){
+        project.forEach(task => {
+            if(task.name === taskName){
+                isExist = true
+            }
+        })
+    }
     return isExist
 }
 
-export const { addProject, deleteProject, addTask, deleteTask } = projectsSlice.actions
+export const { addProject, deleteProject, addTask, deleteTask, projectTasksInitialize } = projectsSlice.actions
 
 export default projectsSlice.reducer
 
 
-interface projectsType {
-    [key: string]: taskType[]
-}
