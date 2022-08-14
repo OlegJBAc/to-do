@@ -5,13 +5,14 @@ import { v4 } from 'uuid'
 import { useAppDispatch } from "../../hooks/hooks"
 import { addTask } from "../../redux/reducers/projects-slice"
 import { addTaskToDefaultPage } from "../../redux/reducers/defaultPages-slice"
+import { constDefaultPages } from "../../general/constants/constants"
 
 
 const CreateTask: FC<propsType> = ({ project }) => {
     
     const dispatch = useAppDispatch()
     const submit = (values: valuesType, { setSubmitting }: submittingType) => {
-        const defaultPages = ['today']
+        const defaultPages = constDefaultPages
         if(!defaultPages.includes(project)){
             dispatch(addTask({ projectName: project, task: {
                 id: v4(),

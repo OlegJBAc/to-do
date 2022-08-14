@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
+import { constAllProjectsTasks } from "../../general/constants/constants"
 import Header from "../header/header"
 import SideBar from "../sideBar/sideBar"
 import s from './mainLayout.module.scss'
@@ -11,7 +12,7 @@ const MainLayout = () => {
     useEffect(() => {
         let currentLocation = location.pathname
         if(currentLocation === '/'){
-            navigate('/allProjectsTasks')
+            navigate(constAllProjectsTasks)
         }
     }, [])
     return (

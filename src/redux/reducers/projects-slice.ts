@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { constAllProjectsTasks } from "../../general/constants/constants";
 import { projectsType, taskType } from "../../types/types";
 import { rootStateType } from "../store";
 
@@ -49,13 +50,13 @@ const projectsSlice = createSlice({
         },
         addTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
             const { projectName, task } = action.payload
-            if(projectName !== 'allProjectsTasks'){
+            if(projectName !== constAllProjectsTasks){
                 const isExist = checkTaskExisting(state.projects[projectName], task.name)
                 if(!isExist){
                     state.projects[projectName].push(task)
                     state.allProjectsTasks.push(task)
                     localStorage.setItem('projects', JSON.stringify(state.projects))
-                    localStorage.setItem('allProjectsTasks', JSON.stringify(state.allProjectsTasks))
+                    localStorage.setItem(constAllProjectsTasks, JSON.stringify(state.allProjectsTasks))
                 }else{
                     console.error('such task already exist')
                 }
@@ -63,7 +64,7 @@ const projectsSlice = createSlice({
                 const isExist = checkTaskExisting(state.allProjectsTasks, task.name)
                 if(!isExist){
                     state.allProjectsTasks.push(task)
-                    localStorage.setItem('allProjectsTasks', JSON.stringify(state.allProjectsTasks))
+                    localStorage.setItem(constAllProjectsTasks, JSON.stringify(state.allProjectsTasks))
                 }else{
                     console.error('such task already exist')
                 }

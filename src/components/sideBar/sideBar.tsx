@@ -5,6 +5,7 @@ import { addProject } from "../../redux/reducers/projects-slice"
 import { getAllProjectsTasks, getProjectsNames } from "../../redux/selectors"
 import s from './sideBar.module.scss'
 import { v4 } from 'uuid'
+import { constAllProjectsTasks } from "../../general/constants/constants"
 
 
 const SideBar = () => {
@@ -14,8 +15,8 @@ const SideBar = () => {
     return (
         <div className={s.sideBar}>
             <ul>
-                <NavLink to='allProjectsTasks'>
-                    <li>allProjectsTasks</li>
+                <NavLink to={constAllProjectsTasks}>
+                    <li>{constAllProjectsTasks}</li>
                 </NavLink>
                 <NavLink to='today'>
                     <li>today</li>

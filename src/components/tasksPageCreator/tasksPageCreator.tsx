@@ -6,21 +6,22 @@ import s from './tasksPageCreator.module.scss'
 import { v4 } from 'uuid'
 import CreateTask from "../createTask/createTask"
 import { taskType } from "../../types/types"
+import { constAllProjectsTasks } from "../../general/constants/constants"
 
 
 const TasksPageCreator = () => {
     const location = useLocation()
-    const allProjectTasks = useAppSelector(getAllProjectsTasks)
+    const allProjectsTasks = useAppSelector(getAllProjectsTasks)
     const projects = useAppSelector(getProjects)
     const defaultPages = useAppSelector(getDefaultPages)
     const getCurrentPage = (): taskType[] => {
         const currentLocation = location.pathname.slice(1)
         const defaultPagesNames = ['today']
-        if(!defaultPagesNames.includes(currentLocation) && currentLocation !== 'allProjectsTasks'){
+        if(!defaultPagesNames.includes(currentLocation) && currentLocation !== constAllProjectsTasks){
             return projects[currentLocation]
         }else{
             if(!defaultPagesNames.includes(currentLocation)){
-                return allProjectTasks
+                return allProjectsTasks
             }else{
                 // @ts-ignore 
                 return defaultPages[currentLocation] 
@@ -30,7 +31,6 @@ const TasksPageCreator = () => {
     return (
         <div className={s.page}>
             <CreateTask project={location.pathname.slice(1)}/>
-
             <div className={s.tasks}>
                 {getCurrentPage().map(task => {
                     return <li key={v4()}>

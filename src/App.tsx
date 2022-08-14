@@ -5,6 +5,7 @@ import s from './App.module.scss'
 import MainLayout from './components/mainLayout/mainLayout';
 import NotFound from './components/notFound/notFound';
 import TasksPageCreator from './components/tasksPageCreator/tasksPageCreator';
+import { constAllProjectsTasks } from './general/constants/constants';
 import Loader from './general/loader/loader';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
 import { setAppInitialized } from './redux/reducers/app-slice';
@@ -23,7 +24,7 @@ const App = () => {
         const receivedLocalStorage = {...localStorage}
         const localStorageKeys = Object.keys(receivedLocalStorage)
         const initializationInfo = {
-          arrayNecessaryItems: ['allProjectsTasks'],
+          arrayNecessaryItems: [constAllProjectsTasks],
           objectNecessaryItems: ['projects', 'defaultPages'],
         }
         initializationInfo.arrayNecessaryItems.forEach(item => {
@@ -44,7 +45,7 @@ const App = () => {
         })
         const projects: string | null = localStorage.getItem('projects')
         const defaultPages: string | null = localStorage.getItem('defaultPages')
-        const allProjectsTasks: string | null = localStorage.getItem('allProjectsTasks')
+        const allProjectsTasks: string | null = localStorage.getItem(constAllProjectsTasks)
         dispatch(projectsTasksInitialize(projects ? JSON.parse(projects) : null))
         dispatch(allProjectsTasksInitialize(allProjectsTasks ? JSON.parse(allProjectsTasks) : null))
         dispatch(defaultPagesInitialize(defaultPages ? JSON.parse(defaultPages) : null))
