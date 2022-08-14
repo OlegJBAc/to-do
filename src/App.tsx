@@ -9,7 +9,7 @@ import Loader from './general/loader/loader';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
 import { setAppInitialized } from './redux/reducers/app-slice';
 import { defaultPagesInitialize } from './redux/reducers/defaultPages-slice';
-import { projectTasksInitialize } from './redux/reducers/projects-slice';
+import { allProjectsTasksInitialize, projectsTasksInitialize } from './redux/reducers/projects-slice';
 import { getAppInitialized } from './redux/selectors';
 
 
@@ -44,9 +44,11 @@ const App = () => {
         })
         const projects: string | null = localStorage.getItem('projects')
         const defaultPages: string | null = localStorage.getItem('defaultPages')
-        dispatch(projectTasksInitialize(projects ? JSON.parse(projects) : null))
+        const allProjectsTasks: string | null = localStorage.getItem('allProjectsTasks')
+        dispatch(projectsTasksInitialize(projects ? JSON.parse(projects) : null))
+        dispatch(allProjectsTasksInitialize(allProjectsTasks ? JSON.parse(allProjectsTasks) : null))
         dispatch(defaultPagesInitialize(defaultPages ? JSON.parse(defaultPages) : null))
-    }
+      }
     appInitialization()
     dispatch(setAppInitialized(true))
   }, [])

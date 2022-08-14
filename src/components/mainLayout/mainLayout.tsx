@@ -11,7 +11,7 @@ const MainLayout = () => {
     useEffect(() => {
         let currentLocation = location.pathname
         if(currentLocation === '/'){
-            navigate('/allProjectTasks')
+            navigate('/allProjectsTasks')
         }
     }, [])
     return (

@@ -13,17 +13,18 @@ const projectsSlice = createSlice({
     name: 'projects',
     initialState: initialState,
     reducers: {
-        projectTasksInitialize: (state, action: PayloadAction<projectsType | null>) => {
+        projectsTasksInitialize: (state, action: PayloadAction<projectsType | null>) => {
             if(action.payload){
                 state.projects = action.payload
-                const projectsKeys = Object.keys(action.payload)
-                projectsKeys.forEach(project => {
-                    state.projects[project].forEach(task => {
-                        state.allProjectsTasks.push(task)
-                    })
-                })
             }else{
                 console.error('problem with projects initializing')
+            }
+        },
+        allProjectsTasksInitialize: (state, action: PayloadAction<taskType[] | null>) => {
+            if(action.payload){
+                state.allProjectsTasks = action.payload
+            }else{
+                console.error('problem with allProjectsTasks initializing')
             }
         },
         addProject: (state, action: PayloadAction<{projectName: string}>) => {
@@ -48,14 +49,24 @@ const projectsSlice = createSlice({
         },
         addTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
             const { projectName, task } = action.payload
-            const isExist = checkTaskExisting(state.projects[projectName], task.name)
-            if(!isExist){
-                state.projects[projectName].push(task)
-                state.allProjectsTasks.push(task)
-                localStorage.setItem('projects', JSON.stringify(state.projects))
-                localStorage.setItem('allProjectsTasks', JSON.stringify(state.allProjectsTasks))
+            if(projectName !== 'allProjectsTasks'){
+                const isExist = checkTaskExisting(state.projects[projectName], task.name)
+                if(!isExist){
+                    state.projects[projectName].push(task)
+                    state.allProjectsTasks.push(task)
+                    localStorage.setItem('projects', JSON.stringify(state.projects))
+                    localStorage.setItem('allProjectsTasks', JSON.stringify(state.allProjectsTasks))
+                }else{
+                    console.error('such task already exist')
+                }
             }else{
-                console.error('such task already exist')
+                const isExist = checkTaskExisting(state.allProjectsTasks, task.name)
+                if(!isExist){
+                    state.allProjectsTasks.push(task)
+                    localStorage.setItem('allProjectsTasks', JSON.stringify(state.allProjectsTasks))
+                }else{
+                    console.error('such task already exist')
+                }
             }
         },
         deleteTask: (state, action: PayloadAction<{projectName: string, taskForDeleting: taskType}>) => {
@@ -81,7 +92,7 @@ const checkProjectExisting = (projects: projectsType, projectName: string) => {
     const projectsKeys = Object.keys(projects)
     return projectsKeys.includes(projectName) ? true : false
 }
-const checkTaskExisting = (project: taskType[], taskName: string) => {
+export const checkTaskExisting = (project: taskType[], taskName: string) => {
     let isExist = false
     if(project.length !== 0){
         project.forEach(task => {
@@ -93,7 +104,8 @@ const checkTaskExisting = (project: taskType[], taskName: string) => {
     return isExist
 }
 
-export const { addProject, deleteProject, addTask, deleteTask, projectTasksInitialize } = projectsSlice.actions
+export const { addProject, deleteProject, addTask, deleteTask, projectsTasksInitialize,
+               allProjectsTasksInitialize } = projectsSlice.actions
 
 export default projectsSlice.reducer
 
