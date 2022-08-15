@@ -28,7 +28,7 @@ const TasksPageCreator = () => {
             }
         }
     }
-    console.log(getCurrentPage())
+
     return (
         <div className={s.page}>
             <CreateTask project={location.pathname.slice(1)}/>

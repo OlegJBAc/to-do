@@ -1,23 +1,27 @@
 import React, { FC, useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
+import { Navigate, NavLink, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
-import { addProject } from "../../redux/reducers/projects-slice"
 import { getProjectsNames } from "../../redux/selectors"
 import s from './sideBar.module.scss'
 import { v4 } from 'uuid'
 import { constAllProjectsTasks } from "../../general/constants/constants"
 import { ProjectContextMenuBody, ProjectContextMenuStyles } from "./projectContextMenu/projectContextMenu"
+import AddProject from "./createProject/addProject"
+import { setContextMenuActive } from "../../redux/reducers/app-slice"
+import { addProject } from "../../redux/reducers/projects-slice"
 
 
 const SideBar: FC<propsType> = ({ setProjectWasDelete }) => {
+    const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const [projectName, setProjectName] = useState('')
     const [localContextMenu, setLocalContextMenu] = useState(false)
+    const [isProjectCreating, setIsProjectCreating] = useState(false)
     const [coordinates, setCoordinates] = useState({
         project: '',
         top: 0,
         left: 0,
     })
+    
     const projectsNames = useAppSelector(getProjectsNames)
     useEffect(() => {
         const disableContextMenu = () => setLocalContextMenu(false)
@@ -35,6 +39,14 @@ const SideBar: FC<propsType> = ({ setProjectWasDelete }) => {
             top: e.pageY,
             left: e.pageX
         })
+    }
+
+    const startOrEndProjectCreating = (isStart: boolean, projectName?: string | null) => () => {
+        dispatch(setContextMenuActive(isStart))
+        setIsProjectCreating(isStart)
+        if(!isStart && projectName){
+            navigate(projectName)
+        }
     }
 
     return (
@@ -66,10 +78,8 @@ const SideBar: FC<propsType> = ({ setProjectWasDelete }) => {
                     )
                 })}
             </ul>
-            <input onChange={(e: any) => setProjectName(e.currentTarget.value)} value={projectName}/>
-            <button onClick={() => {
-                dispatch(addProject({ projectName }))
-            }}>add project</button>
+            <button id={s.create__projectBtn} onClick={startOrEndProjectCreating(true)}>Add a new project</button>
+                { isProjectCreating && <AddProject startOrEndProjectCreating={startOrEndProjectCreating}/> }
         </div>
     )
 }

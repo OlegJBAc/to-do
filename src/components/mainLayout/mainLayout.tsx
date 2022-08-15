@@ -23,6 +23,7 @@ const MainLayout = () => {
             navigate(constAllProjectsTasks)
         }
     }, [])
+    
     useEffect(() => {
         if(projectWasDelete.wasDelete && projectWasDelete.projectName === location.pathname.slice(1)){
             dispatch(deleteProject({ projectName: projectWasDelete.projectName }))
