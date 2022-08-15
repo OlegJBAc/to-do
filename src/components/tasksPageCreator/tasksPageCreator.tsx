@@ -11,9 +11,11 @@ import { constAllProjectsTasks } from "../../general/constants/constants"
 
 const TasksPageCreator = () => {
     const location = useLocation()
+    
     const allProjectsTasks = useAppSelector(getAllProjectsTasks)
     const projects = useAppSelector(getProjects)
     const defaultPages = useAppSelector(getDefaultPages)
+
     const getCurrentPage = (): taskType[] => {
         const currentLocation = location.pathname.slice(1)
         const defaultPagesNames = ['today']

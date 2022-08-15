@@ -40,7 +40,7 @@ const MainLayout = () => {
         <div className={s.mainLayout}>
             <Header/>
             <div className={s.content}>
-            <SideBar setProjectWasDelete={setProjectWasDelete}/>
+                <SideBar setProjectWasDelete={setProjectWasDelete}/>
                 <Outlet/>
             </div>
         </div>

@@ -13,22 +13,23 @@ const CreateTask: FC<propsType> = ({ project }) => {
     const dispatch = useAppDispatch()
     const submit = (values: valuesType, { setSubmitting }: submittingType) => {
         const defaultPages = constDefaultPages
+        const getCreateTaskPayload = (projectName: string) => {
+            return {
+                projectName, 
+                task: {
+                    id: v4(),
+                    name: values.name,
+                    description: values.description,
+                    priority: 'green',
+                    addedAt: new Date().toISOString()
+                } 
+            }
+        }
         if(!defaultPages.includes(project)){
-            dispatch(addTask({ projectName: project, task: {
-                id: v4(),
-                name: values.name,
-                description: values.description,
-                priority: 'green',
-                addedAt: new Date().toISOString()
-            } }))
+            dispatch(addTask(getCreateTaskPayload(project)))
         }else{
-            dispatch(addTaskToDefaultPage({ projectName: project as 'today', task: {
-                id: v4(),
-                name: values.name,
-                description: values.description,
-                priority: 'green',
-                addedAt: new Date().toISOString()
-            } }))
+            // @ts-ignore
+            dispatch(addTaskToDefaultPage(getCreateTaskPayload(project)))
         }
         
     }

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { defaultProjectsType, taskType } from "../../types/types";
-import { checkTaskExisting } from "./projects-slice";
+import { checkTaskExisting } from "./functionForReducers";
+
 
 
 

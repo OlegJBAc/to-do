@@ -1,14 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { constAllProjectsTasks } from "../../general/constants/constants";
 import { projectsType, taskType } from "../../types/types";
-
+import { checkProjectExisting, checkTaskExisting } from "./functionForReducers";
 
 
 const initialState = {
     allProjectsTasks: [] as taskType[],
     projects: {} as projectsType,
 }
-
 
 const projectsSlice = createSlice({
     name: 'projects',
@@ -89,21 +88,8 @@ const projectsSlice = createSlice({
     }
 })
 
-const checkProjectExisting = (projects: projectsType, projectName: string) => {
-    const projectsKeys = Object.keys(projects)
-    return projectsKeys.includes(projectName) ? true : false
-}
-export const checkTaskExisting = (project: taskType[], taskName: string) => {
-    let isExist = false
-    if(project.length !== 0){
-        project.forEach(task => {
-            if(task.name === taskName){
-                isExist = true
-            }
-        })
-    }
-    return isExist
-}
+
+
 
 export const { addProject, deleteProject, addTask, deleteTask, projectsTasksInitialize,
                allProjectsTasksInitialize } = projectsSlice.actions
