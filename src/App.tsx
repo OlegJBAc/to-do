@@ -6,7 +6,7 @@ import MainLayout from './components/mainLayout/mainLayout';
 import NotFound from './components/notFound/notFound';
 import TasksPageCreator from './components/tasksPageCreator/tasksPageCreator';
 import { constAllProjectsTasks } from './general/constants/constants';
-import Loader from './general/loader/loader';
+import { Loader } from './general/loader/loader';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
 import { setAppInitialized } from './redux/reducers/app-slice';
 import { defaultPagesInitialize } from './redux/reducers/defaultPages-slice';

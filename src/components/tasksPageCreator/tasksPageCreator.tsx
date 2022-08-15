@@ -28,16 +28,18 @@ const TasksPageCreator = () => {
             }
         }
     }
+    console.log(getCurrentPage())
     return (
         <div className={s.page}>
             <CreateTask project={location.pathname.slice(1)}/>
             <div className={s.tasks}>
-                {getCurrentPage().map(task => {
+                {getCurrentPage() && getCurrentPage().map(task => {
                     return <li key={v4()}>
                         <span>{task.name}</span>
                         <span>{task.description}</span>
                     </li>
-                })}
+                    })
+                }
             </div>
         </div>
     )

@@ -2,12 +2,12 @@ import React from "react"
 import s from './loader.module.scss'
 import loader from './loader.gif'
 
-const Loader = () => {
-    return(
+export const Loader = () => {
+    return (
         <div className={s.loader}>
-            <img src={loader}/>
+            <img src={'https://i.gifer.com/fxVE.gif'}/>
         </div>
     )
 }
 
-export default Loader
+

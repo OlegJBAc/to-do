@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { constAllProjectsTasks } from "../../general/constants/constants";
 import { projectsType, taskType } from "../../types/types";
-import { rootStateType } from "../store";
+
 
 
 const initialState = {
@@ -43,7 +43,7 @@ const projectsSlice = createSlice({
             const isExist = checkProjectExisting(state.projects, projectName)
             if(isExist){
                 delete state.projects[projectName]
-                localStorage.setItem('project', JSON.stringify(state.projects))
+                localStorage.setItem('projects', JSON.stringify(state.projects))
             }else{
                 console.error('such project not founded')
             }
