@@ -25,7 +25,7 @@ const TasksPageCreator = () => {
                 return allProjectsTasks
             }else{
                 // @ts-ignore 
-                return defaultPages[currentLocation] 
+                return defaultPages[currentPage] 
             }
         }
     }

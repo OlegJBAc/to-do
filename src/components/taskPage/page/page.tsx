@@ -12,7 +12,7 @@ const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
             <CreateTask project={currentPage}/>
             <div className={s.tasks}>
                 {getCurrentPageTasks() && getCurrentPageTasks().map(task => {
-                    return <Task key={v4()} task={task}/>
+                    return <Task key={v4()} task={task} currentPage={currentPage}/>
                     })
                 }
             </div>

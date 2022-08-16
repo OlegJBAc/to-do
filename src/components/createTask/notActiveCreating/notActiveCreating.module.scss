@@ -1,0 +1,46 @@
+.addbtn{
+    margin: 1em 0.2em;
+    button{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 80%;
+        height: 2em;
+        background: white;
+        border: none;
+        color: black;
+        span{
+            font-size: 1.45em;
+            padding-top: 0.1em;
+        }
+        img{
+            width: 23px;
+            height: 23px;
+            margin-right: 2em;
+
+        }
+    }
+}
+.addbtn:hover{
+    button{
+        width: 80%;
+        height: 2em;
+        background: white;
+        border: none;
+        transition-duration: 0.3s;
+        color: rgba(110, 82, 202, 0.983);
+        cursor: pointer;
+        span{
+            font-size: 1.45em;
+            padding-top: 0.1em;
+        }
+        img{
+            width: 23px;
+            height: 23px;
+            margin-right: 2em;
+            transition-duration: 0.3s;
+            background-color: rgba(134, 30, 238, 0.305);
+            border-radius: 50%;
+        }
+    }
+}
