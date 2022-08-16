@@ -30,7 +30,7 @@ const TasksPageCreator = () => {
             }
         }
     }
-
+    
     return (
         <div className={s.page}>
             <CreateTask project={location.pathname.slice(1)}/>
