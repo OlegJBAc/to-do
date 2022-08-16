@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import s from './App.module.scss'
 import MainLayout from './components/mainLayout/mainLayout';
 import NotFound from './components/notFound/notFound';
-import TasksPageCreator from './components/tasksPageCreator/tasksPageCreator';
+import TasksPageCreator from './components/taskPage/tasksPageCreator/tasksPageCreator';
 import { constAllProjectsTasks } from './general/constants/constants';
 import { Loader } from './general/loader/loader';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
