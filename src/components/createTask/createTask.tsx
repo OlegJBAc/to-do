@@ -2,16 +2,19 @@ import React, { FC, useState } from "react"
 import s from './createTask.module.scss'
 import ActiveCreating from "./activeCreating/activeCreating"
 import NotActiveCreating from "./notActiveCreating/notActiveCreating"
+import { taskType } from "../../types/types"
 
 
-const CreateTask: FC<propsType> = ({ project, editMode, setEditMode }) => {
+const CreateTask: FC<propsType> = ({ project, editMode, setEditMode, task }) => {
     const [addMode, setAddMode] = useState(false)
     return (
         <>
             {addMode
-                ? <ActiveCreating project={project} setAddMode={setAddMode} setEditMode={setEditMode}/>
+                ? <ActiveCreating project={project} setAddMode={setAddMode}  editMode={editMode} 
+                                  setEditMode={setEditMode}/>
                 : editMode
-                    ? <ActiveCreating  project={project} setAddMode={setAddMode} setEditMode={setEditMode}/>
+                    ? <ActiveCreating project={project} setAddMode={setAddMode}  editMode={editMode}
+                                      setEditMode={setEditMode} task={task}/>
                     : <NotActiveCreating setAddMode={setAddMode}/>
             }
         </>
@@ -24,4 +27,5 @@ interface propsType {
     project: string
     editMode?: boolean
     setEditMode?: (editMode: boolean) => void
+    task?: taskType
 }

@@ -80,18 +80,38 @@ const projectsSlice = createSlice({
                         state.allProjectsTasks.splice(indexInAllProjectTasks, 1)
                     }
                 })
-                localStorage.setItem('project', JSON.stringify(state.projects))
+                localStorage.setItem('projects', JSON.stringify(state.projects))
             }else{
                 console.error('such task not founded')
             }
-        }
+        },
+        editTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
+            const { projectName, task } = action.payload
+            const changeTask = (project: taskType[], isAllProjects: boolean) => {
+                project.forEach((taskItem, index, arr) => {
+                    if(taskItem.id === task.id){
+                        arr.splice(index, 1, task)
+                    }
+                })
+                if(!isAllProjects){
+                    localStorage.setItem('projects', JSON.stringify(state.projects))
+                }else{
+                    localStorage.setItem(constAllProjectsTasks, JSON.stringify(state.allProjectsTasks))
+                }
+            }
+            if(projectName !== constAllProjectsTasks){
+                changeTask(state.projects[projectName], false)
+            }else{
+                changeTask(state.allProjectsTasks, true)
+            }
+        },
     }
 })
 
 
 
 
-export const { addProject, deleteProject, addTask, deleteTask, projectsTasksInitialize,
+export const { addProject, deleteProject, addTask, deleteTask, editTask, projectsTasksInitialize,
                allProjectsTasksInitialize } = projectsSlice.actions
 
 export default projectsSlice.reducer

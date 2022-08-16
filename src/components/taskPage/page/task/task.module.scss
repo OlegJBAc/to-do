@@ -1,4 +1,8 @@
 .task{
     display: flex;
     list-style: none;
+    padding: 0.7em 0.5em;
+    word-break: break-all;
+    min-height: 3em;
+    border-bottom: 1px solid rgb(212, 208, 208);
 }

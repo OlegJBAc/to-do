@@ -13,7 +13,7 @@ const Task: FC<propsType> = ({ task, currentPage }) => {
     return (
         <>
             {editMode
-                ? <CreateTask project={currentPage} editMode={editMode} setEditMode={setEditMode}/>
+                ? <CreateTask project={currentPage} editMode={editMode} setEditMode={setEditMode} task={task}/>
                 : <li className={s.task}>
                     <Checkbox/>
                     <Body task={task}/>
