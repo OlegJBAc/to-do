@@ -71,16 +71,26 @@ const projectsSlice = createSlice({
         },
         deleteTask: (state, action: PayloadAction<{projectName: string, taskForDeleting: taskType}>) => {
             const { projectName, taskForDeleting } = action.payload
-            const isExist = checkTaskExisting(state.projects[projectName], taskForDeleting.name)
+            const isAllProjects = projectName !== constAllProjectsTasks ? false : true
+            const isExist = checkTaskExisting( isAllProjects 
+                                                ? state.allProjectsTasks 
+                                                : state.projects[projectName], taskForDeleting.name
+                                            )
             if(isExist){
-                state.projects[projectName].forEach((task, index) => {
+                const actualProject = isAllProjects ? state.allProjectsTasks : state.projects[projectName]
+                actualProject.forEach((task, index) => {
                     if(task.id === taskForDeleting.id){
-                        state.projects[projectName].splice(index, 1)
+                        actualProject.splice(index, 1)
                         const indexInAllProjectTasks = state.allProjectsTasks.indexOf(task)
                         state.allProjectsTasks.splice(indexInAllProjectTasks, 1)
                     }
                 })
-                localStorage.setItem('projects', JSON.stringify(state.projects))
+                if(!isAllProjects){
+                    localStorage.setItem('projects', JSON.stringify(state.projects))
+                }else{
+                    localStorage.setItem(constAllProjectsTasks, JSON.stringify(state.allProjectsTasks))
+                }
+
             }else{
                 console.error('such task not founded')
             }

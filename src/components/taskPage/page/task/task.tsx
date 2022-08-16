@@ -7,7 +7,7 @@ import Actions from "./actions/actions"
 import CreateTask from "../../../createTask/createTask"
 
 
-const Task: FC<propsType> = ({ task, currentPage }) => {
+const Task: FC<propsType> = ({ task, currentPage, contextMenuActive, setContextMenuActive }) => {
     const [editMode, setEditMode] = useState(false)
 
     return (
@@ -17,7 +17,8 @@ const Task: FC<propsType> = ({ task, currentPage }) => {
                 : <li className={s.task}>
                     <Checkbox/>
                     <Body task={task}/>
-                    <Actions setEditMode={setEditMode}/>
+                    <Actions setEditMode={setEditMode} contextMenuActive={contextMenuActive} 
+                             setContextMenuActive={setContextMenuActive} task={task} projectName={currentPage}/>
                 </li>
             }   
         </>
@@ -30,4 +31,6 @@ export default Task
 interface propsType {
     task: taskType
     currentPage: string
+    contextMenuActive: null | string
+    setContextMenuActive: (contextMenuActive: null | string) => void
 }

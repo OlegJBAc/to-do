@@ -1,0 +1,28 @@
+.delete{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    background: rgba(255, 255, 255, 1);
+    padding: 5px 10px;
+    margin-bottom: 0.3em;
+    img{
+        margin-right: 1.1em;
+        width: 1.2em;
+        height: 1.2em;
+    }
+    img:hover{
+        border-radius: 0.4em;
+    }
+    span{
+        font-size: 1.1em;
+        font-style: italic;
+    }
+    color: black;
+}
+.delete:hover{
+    cursor: pointer;
+    color: black;
+    background: rgba(241, 236, 236, 1);
+}

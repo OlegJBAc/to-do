@@ -6,7 +6,7 @@ import { addTask, editTask } from "../../../redux/reducers/projects-slice"
 import { addTaskToDefaultPage } from "../../../redux/reducers/defaultPages-slice"
 import { constDefaultPages } from "../../../general/constants/constants"
 import { v4 } from 'uuid'
-import { taskType } from "../../../types/types"
+import { taskPriorityType, taskType } from "../../../types/types"
 
 
 const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditMode, task }) => {
@@ -20,7 +20,7 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
                     id: editMode && task ? task.id : v4(),
                     name: values.name,
                     description: values.description,
-                    priority: 'green',
+                    priority: 'purple' as taskPriorityType,
                     addedAt: new Date().toISOString()
                 } 
             }

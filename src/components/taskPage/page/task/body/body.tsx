@@ -5,10 +5,10 @@ import s from './body.module.scss'
 
 const Body: FC<propsType> = ({ task }) => {
     return (
-    <div className={s.body}>
-        <span className={s.body__name}>{task.name}</span>
-        <span className={s.body__description}>{task.description}</span>
-    </div>
+        <div className={s.body}>
+            <span className={s.body__name}>{task.name}</span>
+            <span className={s.body__description}>{task.description}</span>
+        </div>
     )
 }
 
