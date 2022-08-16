@@ -2,6 +2,7 @@ import React, { FC } from "react"
 import { taskType } from "../../../types/types"
 import CreateTask from "../../createTask/createTask"
 import s from './page.module.scss'
+import Task from "./task/task"
 import { v4 } from 'uuid'
 
 
@@ -11,10 +12,7 @@ const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
             <CreateTask project={currentPage}/>
             <div className={s.tasks}>
                 {getCurrentPageTasks() && getCurrentPageTasks().map(task => {
-                    return <li key={v4()}>
-                        <span>{task.name}</span>
-                        <span>{task.description}</span>
-                    </li>
+                    return <Task key={v4()} task={task}/>
                     })
                 }
             </div>
