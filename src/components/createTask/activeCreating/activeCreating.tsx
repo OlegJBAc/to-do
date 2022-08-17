@@ -21,7 +21,8 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
                     name: values.name,
                     description: values.description,
                     priority: 'purple' as taskPriorityType,
-                    addedAt: new Date().toISOString()
+                    addedAt: new Date().toISOString(),
+                    currentProject: projectName
                 } 
             }
         }

@@ -15,7 +15,7 @@ const Task: FC<propsType> = ({ task, currentPage, contextMenuActive, setContextM
             {editMode
                 ? <CreateTask project={currentPage} editMode={editMode} setEditMode={setEditMode} task={task}/>
                 : <li className={s.task}>
-                    <Checkbox/>
+                    <Checkbox taskPriority={task.priority}/>
                     <Body task={task}/>
                     <Actions setEditMode={setEditMode} contextMenuActive={contextMenuActive} 
                              setContextMenuActive={setContextMenuActive} task={task} projectName={currentPage}/>

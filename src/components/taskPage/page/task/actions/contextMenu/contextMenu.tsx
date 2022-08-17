@@ -13,7 +13,7 @@ const ContextMenu: FC<propsType> = ({ setContextMenuActive, setEditMode, project
         <div className={s.menu}>
             <EditTask setEditMode={setEditMode}/>
             <div className={s.border__bottom}></div>
-            <SetPriority/>
+            <SetPriority projectName={projectName} task={task}/>
             <div className={s.border__bottom}></div>
             <DeleteTask projectName={projectName} task={task}/>
         </div>

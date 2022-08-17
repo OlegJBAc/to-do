@@ -9,7 +9,7 @@ import { taskType } from "../../../../../../../types/types"
 const DeleteTask: FC<propsType> = ({ projectName, task }) => {
     const dispatch = useAppDispatch()
     const deleteFunc = () => {
-        dispatch(deleteTask({ projectName, taskForDeleting: task }))
+        dispatch(deleteTask({ projectName, task }))
     }
     return (
         <>

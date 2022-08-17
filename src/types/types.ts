@@ -4,6 +4,7 @@ export interface taskType {
     description: string
     priority: taskPriorityType
     addedAt: string
+    currentProject: string
 }
 export type taskPriorityType = 'red' | 'orange' | 'purple' | 'none'
 export interface projectsType {
