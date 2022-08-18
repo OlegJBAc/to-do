@@ -64,15 +64,26 @@ const projectsSlice = createSlice({
         },
         setPriorityTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
             actionOnTask(state, 'setPriority', action.payload)
-        }
+        },
+        changeTaskProject: (state, action: PayloadAction<{ projectFrom: string, projectTo: string, task: taskType }>)=> {
+            const { projectFrom, projectTo, task } = action.payload
+            state.projects[projectFrom].forEach((taskItem, index, arr) => {
+                if(taskItem.id === task.id){
+                    arr.splice(index, 1)
+                }
+            })
+            state.allProjectsTasks.forEach((taskItem, index, arr) => {
+                if(taskItem.id === task.id){
+                    arr.splice(index, 1, {...task, currentProject: projectTo})
+                }
+            })
+            state.projects[projectTo].push({...task, currentProject: projectTo})
+        },
     }
 })
 
-
-
-
-export const { addProject, deleteProject, addTask, deleteTask, editTask, setPriorityTask, projectsTasksInitialize,
-               allProjectsTasksInitialize } = projectsSlice.actions
+export const { addProject, deleteProject, addTask, deleteTask, editTask, setPriorityTask, changeTaskProject,
+               projectsTasksInitialize, allProjectsTasksInitialize } = projectsSlice.actions
 
 export default projectsSlice.reducer
 

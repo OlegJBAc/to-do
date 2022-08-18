@@ -3,7 +3,7 @@ import s from './activeCreating.module.scss'
 import { Field, Form, Formik } from "formik"
 import { useAppDispatch } from "../../../hooks/hooks"
 import { addTask, editTask } from "../../../redux/reducers/projects-slice"
-import { addTaskToDefaultPage } from "../../../redux/reducers/defaultPages-slice"
+import { addTaskToDefaultPage, editDefaultPageTask } from "../../../redux/reducers/defaultPages-slice"
 import { constDefaultPages } from "../../../general/constants/constants"
 import { v4 } from 'uuid'
 import { taskPriorityType, taskType } from "../../../types/types"
@@ -35,13 +35,20 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
             }
             setAddMode(false)
         }else{
-            // @ts-ignore
-            dispatch(editTask(getCreateTaskPayload(project)))
-            if(setEditMode){
-                setEditMode(false)
+            if(!defaultPages.includes(project) && task){
+                dispatch(editTask(getCreateTaskPayload(task.currentProject)))
+                if(setEditMode){
+                    setEditMode(false)
+                }
+            }else{
+                if(task){
+                    dispatch(editDefaultPageTask(getCreateTaskPayload(task.currentProject)))
+                    if(setEditMode){
+                        setEditMode(false)
+                    }
+                }
             }
         }
-      
     }
     const cancelCreating = () => {
         setAddMode(false)

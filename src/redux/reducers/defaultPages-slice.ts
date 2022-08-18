@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { defaultProjectsType, taskType } from "../../types/types";
-import { checkTaskExisting } from "./functionForReducers";
+import { actionOnTask, checkTaskExisting } from "./functionForReducers";
 
 
 
@@ -30,14 +30,25 @@ const defaultPagesSlice = createSlice({
                 console.error('such task already exist')
             }
         },
-
+        deleteDefaultPageTask: (state, action: PayloadAction<{projectName: string, task: taskType}>) => {
+            actionOnTask(state, 'delete', action.payload)
+        },
+        editDefaultPageTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
+            actionOnTask(state, 'edit', action.payload)
+        },
+        setPriorityDefaultPageTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
+            actionOnTask(state, 'setPriority', action.payload)
+        },
     }
 })
 
 
-export const { defaultPagesInitialize, addTaskToDefaultPage } = defaultPagesSlice.actions
+export const { defaultPagesInitialize, addTaskToDefaultPage, deleteDefaultPageTask, editDefaultPageTask, 
+               setPriorityDefaultPageTask } = defaultPagesSlice.actions
 
 export default defaultPagesSlice.reducer
 
+
+export type defaultPagesStateType = typeof initialState
 
 

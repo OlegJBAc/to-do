@@ -1,5 +1,7 @@
 import React, { FC } from "react"
+import { constDefaultPages } from "../../../../../../../general/constants/constants"
 import { useAppDispatch } from "../../../../../../../hooks/hooks"
+import { setPriorityDefaultPageTask } from "../../../../../../../redux/reducers/defaultPages-slice"
 import { setPriorityTask } from "../../../../../../../redux/reducers/projects-slice"
 import { taskPriorityType, taskType } from "../../../../../../../types/types"
 import s from './setPriority.module.scss'
@@ -8,7 +10,11 @@ import s from './setPriority.module.scss'
 const SetPriority: FC<propsType> = ({ projectName, task }) => {
     const dispatch = useAppDispatch()
     const setPriorityFunc = (priority: taskPriorityType) => () => {
-        dispatch(setPriorityTask({ projectName, task: {...task, priority} }))
+        if(!constDefaultPages.includes(projectName)){
+            dispatch(setPriorityTask({ projectName, task: {...task, priority} }))
+        }else{
+            dispatch(setPriorityDefaultPageTask({ projectName, task: {...task, priority} }))
+        }
     }
     return (
         <div className={s.priority}>

@@ -4,12 +4,18 @@ import deleteIcon from '../../../../../../../general/svgs/deleteIcon.svg'
 import { useAppDispatch } from "../../../../../../../hooks/hooks"
 import { deleteTask } from "../../../../../../../redux/reducers/projects-slice"
 import { taskType } from "../../../../../../../types/types"
+import { deleteDefaultPageTask } from "../../../../../../../redux/reducers/defaultPages-slice"
+import { constDefaultPages } from "../../../../../../../general/constants/constants"
 
 
 const DeleteTask: FC<propsType> = ({ projectName, task }) => {
     const dispatch = useAppDispatch()
     const deleteFunc = () => {
-        dispatch(deleteTask({ projectName, task }))
+        if(!constDefaultPages.includes(projectName)){
+            dispatch(deleteTask({ projectName, task }))
+        }else{
+            dispatch(deleteDefaultPageTask({ projectName, task }))
+        }
     }
     return (
         <>

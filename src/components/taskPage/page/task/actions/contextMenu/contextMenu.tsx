@@ -9,7 +9,6 @@ import SetPriority from "./setPriority/setPriority"
 const ContextMenu: FC<propsType> = ({ setContextMenuActive, setEditMode, projectName, task }) => {
 
     return (
-        // @ts-ignore
         <div className={s.menu}>
             <EditTask setEditMode={setEditMode}/>
             <div className={s.border__bottom}></div>
