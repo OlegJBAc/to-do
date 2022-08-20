@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import { taskType } from "../../../../../../types/types"
+import { taskType } from "../../../../../../../types/types"
 import s from './contextMenu.module.scss'
 import DeleteTask from "./deleteTask/deleteTask"
 import EditTask from "./editTask/editTask"

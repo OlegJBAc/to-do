@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react"
 import s from './task.module.scss'
-import { taskType } from "../../../../types/types"
+import { taskType } from "../../../../../types/types"
 import Checkbox from "./checkbox/checkbox"
 import Body from "./body/body"
 import Actions from "./actions/actions"
-import CreateTask from "../../../createTask/createTask"
+import CreateTask from "../../../../createTask/createTask"
 
 
 const Task: FC<propsType> = ({ task, currentPage, contextMenuActive, setContextMenuActive }) => {

@@ -12,6 +12,7 @@ const MainLayout = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const [sideBarIsVisible, setSideBarIsVisible] = useState<boolean>(true)
     const [projectWasDelete, setProjectWasDelete] = useState<{wasDelete: boolean, projectName: string}>({
         wasDelete: false,
         projectName: ''
@@ -38,10 +39,10 @@ const MainLayout = () => {
 
     return (
         <div className={s.mainLayout}>
-            <Header/>
+            <Header sideBarIsVisible={sideBarIsVisible} setSideBarIsVisible={setSideBarIsVisible}/>
             <div className={s.content}>
-                <SideBar setProjectWasDelete={setProjectWasDelete}/>
-                <Outlet/>
+                <SideBar setProjectWasDelete={setProjectWasDelete} sideBarIsVisible={sideBarIsVisible}/>
+                <Outlet context={{sideBarIsVisible}} />
             </div>
         </div>
     )

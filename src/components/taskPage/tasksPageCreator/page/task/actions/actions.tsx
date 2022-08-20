@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react"
 import s from './actions.module.scss'
-import penIcon from '../../../../../general/svgs/penIcon.svg'
-import threeDots from '../../../../../general/svgs/threeDots.svg'
+import penIcon from '../../../../../../general/svgs/penIcon.svg'
+import threeDots from '../../../../../../general/svgs/threeDots.svg'
 import ContextMenu from "./contextMenu/contextMenu"
-import { taskType } from "../../../../../types/types"
+import { taskType } from "../../../../../../types/types"
 
 
 const Actions: FC<propsType> = ({ setEditMode, contextMenuActive, setContextMenuActive, projectName, task }) => {

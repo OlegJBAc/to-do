@@ -1,4 +1,58 @@
 .header{
     height: 50px;
     background: linear-gradient(45deg, rgb(68, 0, 255) 40%, white, rgb(115, 8, 255) 60%);
+    display: flex;
+    align-items: center;
+}
+.sideBarVis__btn{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-left: 5em;
+    background: rgb(0, 0, 0);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    span{
+        position: absolute;
+        top: 50%; margin-top: -2px;
+        left: 50%; margin-left: -10px;
+        width: 20px;
+        height: 2px;
+        background-color: white;
+    }
+    span::before{
+        content: '';
+        position: absolute;
+        top: 50%; margin-top: -8px;
+        left: 50%; margin-left: -10px;
+        width: 20px;
+        height: 2px;
+        background-color: white;
+        transition-duration: 0.3s;
+    }
+   span::after{
+        content: '';
+        position: absolute;
+        top: 50%; margin-top: 6px;
+        left: 50%; margin-left: -10px;
+        width: 20px;
+        height: 2px;
+        background-color: white;
+        transition-duration: 0.3s;
+    }
+}
+#sideBar__invisible{
+    span{
+        height: 0px;
+    }
+    span::before{
+        margin-top: 0px;
+        transform: rotate(45deg);
+    }
+    span::after{
+        margin-top: 0px;
+        transform: rotate(-45deg);
+    }
 }

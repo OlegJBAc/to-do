@@ -1,11 +1,11 @@
 import React, { FC } from "react"
 import s from './deleteTask.module.scss'
-import deleteIcon from '../../../../../../../general/svgs/deleteIcon.svg'
-import { useAppDispatch } from "../../../../../../../hooks/hooks"
-import { deleteTask } from "../../../../../../../redux/reducers/projects-slice"
-import { taskType } from "../../../../../../../types/types"
-import { deleteDefaultPageTask } from "../../../../../../../redux/reducers/defaultPages-slice"
-import { constDefaultPages } from "../../../../../../../general/constants/constants"
+import deleteIcon from '../../../../../../../../general/svgs/deleteIcon.svg'
+import { useAppDispatch } from "../../../../../../../../hooks/hooks"
+import { deleteTask } from "../../../../../../../../redux/reducers/projects-slice"
+import { taskType } from "../../../../../../../../types/types"
+import { deleteDefaultPageTask } from "../../../../../../../../redux/reducers/defaultPages-slice"
+import { constDefaultPages } from "../../../../../../../../general/constants/constants"
 
 
 const DeleteTask: FC<propsType> = ({ projectName, task }) => {

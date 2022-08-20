@@ -1,4 +1,8 @@
 .container{
     width: 80%;
     padding-right: 5em;
+    transition-duration: 0.5s;
+}
+#sideBar__invisible{
+    transform: translateX(-8%);
 }

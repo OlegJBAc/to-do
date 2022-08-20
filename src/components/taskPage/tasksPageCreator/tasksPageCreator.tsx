@@ -1,20 +1,19 @@
 import React from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useOutletContext } from "react-router-dom"
 import {  useAppSelector } from "../../../hooks/hooks"
 import { getAllProjectsTasks, getDefaultPages, getProjects } from "../../../redux/selectors"
 import s from './tasksPageCreator.module.scss'
 import { constAllProjectsTasks } from "../../../general/constants/constants"
-import Page from "../page/page"
+import Page from './page/page'
 import { taskType } from "../../../types/types"
 
 
 const TasksPageCreator = () => {
     const location = useLocation()
-    
+    const { sideBarIsVisible } = useOutletContext<{ sideBarIsVisible: boolean }>()
     const allProjectsTasks = useAppSelector(getAllProjectsTasks)
     const projects = useAppSelector(getProjects)
     const defaultPages = useAppSelector(getDefaultPages)
-
     const getCurrentPageTasks = (): taskType[] => {
         const currentPage = location.pathname.slice(1)
         const defaultPagesNames = ['today']
@@ -31,7 +30,7 @@ const TasksPageCreator = () => {
     }
     
     return (
-        <div className={s.container}>
+        <div className={s.container} id={sideBarIsVisible ? s.sideBar__visible : s.sideBar__invisible}>
             <Page getCurrentPageTasks={getCurrentPageTasks} currentPage={location.pathname.slice(1)}/>
         </div>
     )

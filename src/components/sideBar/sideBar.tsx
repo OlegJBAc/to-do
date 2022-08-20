@@ -9,7 +9,7 @@ import DefaultProjects from "./defaultProjects/defaultProjects"
 import './sideBar.scss'
 
 
-const SideBar: FC<propsType> = ({ setProjectWasDelete }) => {
+const SideBar: FC<propsType> = ({ setProjectWasDelete,  sideBarIsVisible }) => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const [isProjectCreating, setIsProjectCreating] = useState(false)
@@ -21,7 +21,7 @@ const SideBar: FC<propsType> = ({ setProjectWasDelete }) => {
         }
     }
     return (
-        <div className={s.sideBar}>
+        <div className={s.sideBar} id={sideBarIsVisible ? s.sideBar__visible : s.sideBar__invisible}>
             <DefaultProjects/>
             <MyProjects setProjectWasDelete={setProjectWasDelete}/>
             <button id={s.create__projectBtn} onClick={startOrEndProjectCreating(true)}>Add a new project</button>
@@ -35,4 +35,5 @@ export default SideBar
 
 interface propsType {
     setProjectWasDelete: (ProjectWasDelete: { wasDelete: boolean, projectName: string }) => void
+    sideBarIsVisible: boolean
 }

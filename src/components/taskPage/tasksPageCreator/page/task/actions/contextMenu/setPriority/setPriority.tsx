@@ -1,9 +1,9 @@
 import React, { FC } from "react"
-import { constDefaultPages } from "../../../../../../../general/constants/constants"
-import { useAppDispatch } from "../../../../../../../hooks/hooks"
-import { setPriorityDefaultPageTask } from "../../../../../../../redux/reducers/defaultPages-slice"
-import { setPriorityTask } from "../../../../../../../redux/reducers/projects-slice"
-import { taskPriorityType, taskType } from "../../../../../../../types/types"
+import { constDefaultPages } from "../../../../../../../../general/constants/constants"
+import { useAppDispatch } from "../../../../../../../../hooks/hooks"
+import { setPriorityDefaultPageTask } from "../../../../../../../../redux/reducers/defaultPages-slice"
+import { setPriorityTask } from "../../../../../../../../redux/reducers/projects-slice"
+import { taskPriorityType, taskType } from "../../../../../../../../types/types"
 import s from './setPriority.module.scss'
 
 

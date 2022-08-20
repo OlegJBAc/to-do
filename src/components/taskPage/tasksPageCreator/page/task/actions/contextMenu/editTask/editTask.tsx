@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import s from './editTask.module.scss'
-import penIcon from '../../../../../../../general/svgs/penIcon.svg'
+import penIcon from '../../../../../../../../general/svgs/penIcon.svg'
 
 
 const EditTask: FC<propsType> = ({ setEditMode }) => {

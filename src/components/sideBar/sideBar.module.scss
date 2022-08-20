@@ -3,6 +3,8 @@
     padding: 1rem 0.5rem 0.5rem 1rem;
     background: rgb(245, 245, 245);
     height: 100vh;
+    transition-duration: 0.5s;
+    transform: translateX(0%);
     ul{
         padding-left: 0px;
         list-style: none;
@@ -23,5 +25,8 @@
             margin-top: 0.4rem;
             background: rgb(237, 232, 232);
         }
-    }   
+    }
+}
+#sideBar__invisible{
+    transform: translateX(-100%);
 }

@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react"
-import { taskType } from "../../../types/types"
-import CreateTask from "../../createTask/createTask"
+import { taskType } from "../../../../types/types"
+import CreateTask from "../../../createTask/createTask"
 import s from './page.module.scss'
 import Task from "./task/task"
 import { v4 } from 'uuid'
-import { constAllProjectsTasks } from "../../../general/constants/constants"
+import { constAllProjectsTasks } from "../../../../general/constants/constants"
 
 
 const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
