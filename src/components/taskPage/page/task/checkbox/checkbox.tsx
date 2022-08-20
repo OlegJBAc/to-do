@@ -5,9 +5,9 @@ import './checkbox.scss'
 const Checkbox: FC<propsType> = ({ taskPriority }) => {
 
     return (
-        <div className={s.checkbox__container} id={`checkbox__${taskPriority}`}>
+        <div className={s.checkbox__container}>
             <input id={s.checkbox} type='checkbox'/>
-            <label htmlFor={s.checkbox}/>
+            <label htmlFor={s.checkbox} id={`checkbox__${taskPriority}`}/>
         </div>
     )
 }

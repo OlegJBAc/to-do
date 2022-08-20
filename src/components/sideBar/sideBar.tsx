@@ -6,6 +6,7 @@ import AddProject from "./createProject/addProject"
 import { setContextMenuActive } from "../../redux/reducers/app-slice"
 import MyProjects from "./myProjects/myProjects"
 import DefaultProjects from "./defaultProjects/defaultProjects"
+import './sideBar.scss'
 
 
 const SideBar: FC<propsType> = ({ setProjectWasDelete }) => {

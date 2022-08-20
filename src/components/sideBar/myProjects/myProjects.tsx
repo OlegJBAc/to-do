@@ -6,6 +6,7 @@ import { ProjectContextMenuBody, ProjectContextMenuStyles } from "../projectCont
 import s from './myProjects.module.scss'
 import { v4 } from 'uuid'
 
+
 const MyProjects: FC<propsType> = ({ setProjectWasDelete }) => {
     const [localContextMenu, setLocalContextMenu] = useState(false)
     const [coordinates, setCoordinates] = useState({

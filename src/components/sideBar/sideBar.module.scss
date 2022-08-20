@@ -1,6 +1,27 @@
 .sideBar{
     width: 20%;
-    a{
-        color: black;
-    }
+    padding: 1rem 0.5rem 0.5rem 1rem;
+    background: rgb(245, 245, 245);
+    height: 100vh;
+    ul{
+        padding-left: 0px;
+        list-style: none;
+        font-size: 1.2em;
+        line-height: 170%;
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        li{
+            border-radius: 0.1em;
+            padding-left: 1rem;
+            word-break: break-all;
+            margin-top: 0.4rem;
+        }
+        li:hover{
+            transition-duration: 1s;
+            margin-top: 0.4rem;
+            background: rgb(237, 232, 232);
+        }
+    }   
 }

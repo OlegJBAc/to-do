@@ -1,0 +1,14 @@
+.active{
+    color: rgb(255, 149, 0);
+    li{
+        transition-duration: 0.1s;
+        background: rgb(237, 232, 232);
+        font-size: 120%;
+        color: rgb(0, 0, 0);
+    }
+    li:hover{
+        margin-top: 0.4rem;
+        background: rgb(171, 169, 169);
+        transition-duration: 0.1s;
+    }
+}

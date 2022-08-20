@@ -16,7 +16,6 @@ const Actions: FC<propsType> = ({ setEditMode, contextMenuActive, setContextMenu
                 return contextMenuActive = null
             }
         })
-
     }
     return (
         <div className={s.actions}>

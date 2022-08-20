@@ -1,14 +1,14 @@
 #checkbox{
-    &__none{
-       border: 1px solid white; 
+    &__none::before{
+       border: 2px solid black; 
     }
-    &__orange{
-        border: 1px solid orange; 
+    &__orange::before{
+        border: 2px solid orange; 
      }
-    &__red{
-        border: 1px solid red; 
+    &__red::before{
+        border: 2px solid red; 
     }
-    &__purple{
-       border: 1px solid purple; 
+    &__purple::before{
+       border: 2px solid purple; 
     }
 }
