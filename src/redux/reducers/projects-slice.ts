@@ -28,7 +28,7 @@ const projectsSlice = createSlice({
                 console.error('problem with allProjectsTasks initializing')
             }
         },
-        addProject: (state, action: PayloadAction<{projectName: string}>) => {
+        addProject: (state, action: PayloadAction<{ projectName: string }>) => {
             const { projectName } = action.payload
             const isExist = checkProjectExisting(state.projects, projectName)
             if(!isExist){
@@ -38,11 +38,14 @@ const projectsSlice = createSlice({
                 console.error('project already exist')
             }
         },
-        deleteProject: (state, action: PayloadAction<{projectName: string}>) => {
+        deleteProject: (state, action: PayloadAction<{ projectName: string }>) => {
             const { projectName } = action.payload
             delete state.projects[projectName]
+            state.allProjectsTasks = state.allProjectsTasks.filter((task) => {
+                return task.currentProject !== projectName
+            })
             localStorage.setItem('projects', JSON.stringify(state.projects))
-            console.error('such project not founded')
+            localStorage.setItem(constAllProjectsTasks, JSON.stringify(state.allProjectsTasks))
         },
         addTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
             const { projectName, task } = action.payload
