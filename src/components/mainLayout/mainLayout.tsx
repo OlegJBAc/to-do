@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import { constAllProjectsTasks } from "../../general/constants/constants"
 import { useAppDispatch } from "../../hooks/hooks"
@@ -8,7 +8,7 @@ import SideBar from "../sideBar/sideBar"
 import s from './mainLayout.module.scss'
 
 
-const MainLayout = () => {
+const MainLayout: FC<propsType> = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
@@ -24,7 +24,7 @@ const MainLayout = () => {
             navigate(constAllProjectsTasks)
         }
     }, [])
-    
+
     useEffect(() => {
         if(projectWasDelete.wasDelete && projectWasDelete.projectName === location.pathname.slice(1)){
             dispatch(deleteProject({ projectName: projectWasDelete.projectName }))
@@ -49,3 +49,8 @@ const MainLayout = () => {
 }
 
 export default MainLayout
+
+
+interface propsType {
+
+}

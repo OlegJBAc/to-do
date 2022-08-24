@@ -3,13 +3,15 @@
     background: linear-gradient(45deg, rgb(68, 0, 255) 40%, white, rgb(115, 8, 255) 60%);
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .sideBarVis__btn{
     position: relative;
     width: 40px;
     height: 40px;
     margin-left: 5em;
-    background: rgb(0, 0, 0);
+    background: rgb(68, 0, 255);
+    transition-duration: 0.2s;
     border: none;
     color: white;
     border-radius: 50%;
@@ -43,6 +45,9 @@
         transition-duration: 0.3s;
     }
 }
+.sideBarVis__btn:hover{
+    background: rgba(8, 1, 102, 0.589);
+}
 #sideBar__invisible{
     span{
         height: 0px;
@@ -55,4 +60,13 @@
         margin-top: 0px;
         transform: rotate(-45deg);
     }
+}
+.logOut__button{
+    padding: 0.3em 1em;
+    margin-right: 3em;
+    border: 1px solid rgba(255, 255, 255, 0.411);
+    background: linear-gradient(45deg, rgba(0, 0, 255, 0.616), rgba(210, 213, 236, 0.336), purple);
+    color: white;
+    box-shadow: inset 0px 0px 3px rgb(184, 172, 192);
+    cursor: pointer;
 }

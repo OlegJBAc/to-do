@@ -1,75 +1,57 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {  Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import s from './App.module.scss'
+import Login from './components/login/login';
 import MainLayout from './components/mainLayout/mainLayout';
 import NotFound from './components/notFound/notFound';
 import TasksPageCreator from './components/taskPage/tasksPageCreator/tasksPageCreator';
-import { constAllProjectsTasks } from './general/constants/constants';
+import { initialLocalStorage } from './general/initializationApp/initializationApp';
 import { Loader } from './general/loader/loader';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
-import { setAppInitialized } from './redux/reducers/app-slice';
-import { defaultPagesInitialize } from './redux/reducers/defaultPages-slice';
-import { allProjectsTasksInitialize, projectsTasksInitialize } from './redux/reducers/projects-slice';
+import { getAuthDataThunk, setAppInitialized } from './redux/reducers/app-slice';
 import { getAppInitialized } from './redux/selectors';
 
 
 const App = () => {
   const dispatch = useAppDispatch()
   const appInitialized = useAppSelector(getAppInitialized)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   // ***===========================================APP INITIALIZATION===========================================*** //
   useEffect(() => {
-      const appInitialization = () => {
-        const receivedLocalStorage = {...localStorage}
-        const localStorageKeys = Object.keys(receivedLocalStorage)
-        const initializationInfo = {
-          arrayNecessaryItems: [constAllProjectsTasks],
-          objectNecessaryItems: ['projects', 'defaultPages'],
+      initialLocalStorage(dispatch)
+      dispatch(getAuthDataThunk()).then(res => {
+        if(res.payload.resultCode !== 0){
+          navigate('login', { replace: true })
+        }else{
+          dispatch(setAppInitialized(true))
         }
-        initializationInfo.arrayNecessaryItems.forEach(item => {
-          if(!localStorageKeys.includes(item)){
-            localStorageKeys.push(item)
-            localStorage.setItem(item, JSON.stringify([]))
-          }
-        })
-        initializationInfo.objectNecessaryItems.forEach(item => {
-          if(!localStorageKeys.includes(item)){
-            localStorageKeys.push(item)
-            if(item === 'defaultPages'){
-              localStorage.setItem(item, JSON.stringify({ today: [] }))
-            }else{
-              localStorage.setItem(item, JSON.stringify({}))
-            }
-          }
-        })
-        const projects: string | null = localStorage.getItem('projects')
-        const defaultPages: string | null = localStorage.getItem('defaultPages')
-        const allProjectsTasks: string | null = localStorage.getItem(constAllProjectsTasks)
-        dispatch(projectsTasksInitialize(projects ? JSON.parse(projects) : null))
-        dispatch(allProjectsTasksInitialize(allProjectsTasks ? JSON.parse(allProjectsTasks) : null))
-        dispatch(defaultPagesInitialize(defaultPages ? JSON.parse(defaultPages) : null))
+      })
+    }, [])
+    useEffect(() => {
+      if(location.pathname.slice(1) === 'login'){
+        dispatch(setAppInitialized(true))
       }
-    appInitialization()
-    dispatch(setAppInitialized(true))
-  }, [])
+    }, [location.pathname])
   // ***===========================================APP INITIALIZATION===========================================*** //
 
   if(!appInitialized){
     return <Loader/>
   }
   return (
-    <BrowserRouter>
       <div className={s.app}>
         <Routes>
           <Route path='/' element={<MainLayout/>}>
             <Route path='/*' element={<TasksPageCreator/>}/>
           </Route>
+          <Route path='/login' element={<Login/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
       </div>
-    </BrowserRouter>
   );
 }
 
+
 export default App;
+

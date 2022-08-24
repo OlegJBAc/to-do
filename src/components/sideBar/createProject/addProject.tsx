@@ -25,7 +25,7 @@ const AddProject: FC<propsType> = ({ startOrEndProjectCreating }) => {
                 <Formik initialValues={{ addProject: '' }} onSubmit={submit}>
                     <Form>
                         <Field name='addProject'/>
-                        <button type="submit">Add project</button>
+                        <button type="submit" className={s.addProject__btn}>Add project</button>
                     </Form>
                 </Formik>
             </div>

@@ -1,12 +1,14 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import { configureStore, combineReducers, getDefaultMiddleware } from "@reduxjs/toolkit"
 import appReducer from './reducers/app-slice'
 import projectsReducer from './reducers/projects-slice'
-import defaultPagesReducer from "./reducers/defaultPages-slice"
+import defaultPagesReducer from './reducers/defaultPages-slice'
+import authReducer from './reducers/auth-slice'
 
 const rootReducer = combineReducers({
     appReducer,
     projectsReducer,
     defaultPagesReducer,
+    authReducer,
 })
 
 const store = configureStore({

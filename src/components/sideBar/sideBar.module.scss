@@ -4,7 +4,7 @@
     background: rgb(245, 245, 245);
     height: 100vh;
     transition-duration: 0.5s;
-    transform: translateX(0%);
+
     ul{
         padding-left: 0px;
         list-style: none;
@@ -29,4 +29,11 @@
 }
 #sideBar__invisible{
     transform: translateX(-100%);
+}
+#create__projectBtn{
+    background: linear-gradient(45deg, rgb(68, 0, 255), 45%, rgb(150, 125, 255), rgb(115, 8, 255) 60%);
+    padding: 0.5em;
+    cursor: pointer;
+    border-radius: 0.3em;
+    color: white;
 }

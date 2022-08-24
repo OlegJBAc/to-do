@@ -16,3 +16,6 @@ export const getAllProjectsTasks = (state: rootStateType) => {
 export const getDefaultPages = (state: rootStateType) => {
     return state.defaultPagesReducer.defaultPages
 }
+export const getAuthData = (state: rootStateType) => {
+    return state.appReducer.authData
+}

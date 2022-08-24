@@ -5,7 +5,7 @@ import loader from './loader.gif'
 export const Loader = () => {
     return (
         <div className={s.loader}>
-            <img src={'https://i.gifer.com/fxVE.gif'}/>
+            <img src={loader}/>
         </div>
     )
 }
