@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/my-todo/static/css/main.84af0898.css",
+    "main.js": "/my-todo/static/js/main.43884d5c.js",
+    "static/media/loader.gif": "/my-todo/static/media/loader.6abaf74a362f68711135.gif",
+    "static/media/deleteIcon.svg": "/my-todo/static/media/deleteIcon.8618c2a5c71beb2ff7abcf855f43115e.svg",
+    "static/media/plusIcon.svg": "/my-todo/static/media/plusIcon.56aec7420b7f9c2fe96ec821ed1521db.svg",
+    "static/media/penIcon.svg": "/my-todo/static/media/penIcon.29db878fd87c921e717f4ea9c72caa3f.svg",
+    "static/media/threeDots.svg": "/my-todo/static/media/threeDots.47158f33ecec8a16908970da260eb365.svg",
+    "index.html": "/my-todo/index.html",
+    "main.84af0898.css.map": "/my-todo/static/css/main.84af0898.css.map",
+    "main.43884d5c.js.map": "/my-todo/static/js/main.43884d5c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84af0898.css",
+    "static/js/main.43884d5c.js"
+  ]
+}
