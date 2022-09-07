@@ -19,3 +19,6 @@ export const getDefaultPages = (state: rootStateType) => {
 export const getAuthData = (state: rootStateType) => {
     return state.appReducer.authData
 }
+export const getAppTheme = (state: rootStateType) => {
+    return state.appReducer.theme
+}

@@ -1,16 +1,24 @@
 import React, { FC } from "react"
 import s from './activeCreating.module.scss'
 import { Field, Form, Formik } from "formik"
-import { useAppDispatch } from "../../../hooks/hooks"
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks"
 import { addTask, editTask } from "../../../redux/reducers/projects-slice"
 import { addTaskToDefaultPage, editDefaultPageTask } from "../../../redux/reducers/defaultPages-slice"
 import { constDefaultPages } from "../../../general/constants/constants"
 import { v4 } from 'uuid'
 import { taskPriorityType, taskType } from "../../../types/types"
+import cn from 'classnames'
+import cnBind from 'classnames/bind'
+import { changeAppTheme } from "../../../redux/reducers/app-slice"
+import { getAppTheme } from "../../../redux/selectors"
 
 
 const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditMode, task }) => {
     const dispatch = useAppDispatch()
+
+    const appTheme = useAppSelector(getAppTheme) 
+    const cx = cnBind.bind(s)
+
     const submit = (values: valuesType, { setSubmitting }: submittingType) => {
         const defaultPages = constDefaultPages
         const getCreateTaskPayload = (projectName: string) => {
@@ -57,7 +65,10 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
         }
     }
     return (
-        <div className={s.create}>
+        <div className={cx('create', {
+            light: appTheme === 'Light',
+            dark: appTheme === 'Dark',
+        })}>
             <Formik initialValues={{ name: editMode && task ? task.name : '', 
                                      description: editMode && task ? task.description : '' }} 
                     onSubmit={submit}>

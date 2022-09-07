@@ -9,12 +9,22 @@
     }
     border: 1px solid rgb(210, 205, 205);
     border-radius: 15px;
+    &.light{
+        button{
+            background: rgb(136, 7, 187) !important;
+            color: white !important;  
+        }
+    }
+    &.dark{
+        button{
+
+        }
+    }
     button{
         background-image: linear-gradient(to right, #6e0ebc 10%, #92fef778  51%, #001aff  100%);
         text-align: center;
         transition: 0.5s;
         background-size: 200% auto;
-        color: white;         
         font-size: 1rem;   
         border-radius: 0.3em;
         display: block;
@@ -22,7 +32,7 @@
     button:hover{
         cursor: pointer;
         background-position: right center;
-        color: #fff;
+        color: indigo;
         text-decoration: none; 
     }
 }

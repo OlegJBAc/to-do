@@ -8,12 +8,17 @@
     width: 40%;
     min-height: 50%;
     border-radius: 1.3em;
-    background: rgb(249, 244, 244);
+    
     border: 1px solid gray;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    &.light{
+        background: rgb(249, 244, 244);
+    }
+    &.dark{
+        background: rgb(17, 17, 17);
+    }
 }
 .container{
     width: 50%;
@@ -147,7 +152,7 @@ input[type='checkbox']:checked + label::before{
             transition: 0.5s;
             background-size: 200% auto;
             color: white;            
-            box-shadow: 0 0 20px #eee;
+            box-shadow: 0 0 5px #eee;
             border-radius: 0.3em;
             display: block;
             span{
@@ -162,7 +167,7 @@ input[type='checkbox']:checked + label::before{
     button:hover{
         cursor: pointer;
         background-position: right center;
-        color: #fff;
+        color: rgb(250, 173, 8);
         text-decoration: none; 
     }
 }

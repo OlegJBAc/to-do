@@ -1,10 +1,37 @@
 .sideBar{
-    width: 20%;
+    min-width: 20%;
+    max-width: 20%;
     padding: 1rem 0.5rem 0.5rem 1rem;
-    background: rgb(245, 245, 245);
-    height: 100vh;
     transition-duration: 0.5s;
-
+    #create__projectBtn{
+        padding: 0.5em;
+        cursor: pointer;
+        border-radius: 0.3em;
+    }
+    li:hover{
+        transition-duration: 1s;
+        margin-top: 0.4rem;
+    }
+    &.light{
+        background: rgba(243, 219, 255, 0.514);
+        li:hover{
+            background: rgba(191, 85, 252, 0.534);
+        }
+        #create__projectBtn{
+            background: rgb(146, 3, 202);
+            color: white;
+        }
+    }
+    &.dark{
+        background: rgb(44, 43, 44);
+        li:hover{
+            background: rgb(59, 57, 57);
+        }
+        #create__projectBtn{
+            background: rgb(118, 0, 214);
+            color: white;
+        }
+    }
     ul{
         padding-left: 0px;
         list-style: none;
@@ -12,7 +39,6 @@
         line-height: 170%;
         a{
             text-decoration: none;
-            color: black;
         }
         li{
             border-radius: 0.1em;
@@ -20,20 +46,9 @@
             word-break: break-all;
             margin-top: 0.4rem;
         }
-        li:hover{
-            transition-duration: 1s;
-            margin-top: 0.4rem;
-            background: rgb(237, 232, 232);
-        }
+
     }
 }
 #sideBar__invisible{
     transform: translateX(-100%);
-}
-#create__projectBtn{
-    background: linear-gradient(45deg, rgb(68, 0, 255), 45%, rgb(150, 125, 255), rgb(115, 8, 255) 60%);
-    padding: 0.5em;
-    cursor: pointer;
-    border-radius: 0.3em;
-    color: white;
 }

@@ -4,7 +4,8 @@ import { authDAL } from "../../DAL/API";
 const initialState = {
     appInitialized: false as boolean,
     contextMenuActive: false as boolean,
-    authData: {}
+    authData: {},
+    theme: 'light' as 'Light' | 'Dark'
 }
 
 export const getAuthDataThunk = createAsyncThunk(
@@ -19,6 +20,15 @@ const appSlice = createSlice({
     name: 'app',
     initialState: initialState,
     reducers: {
+        appThemeInitializing: (state, action: PayloadAction<'Light' | 'Dark' | null>) => {
+            if(action.payload){
+                state.theme = action.payload
+            }
+        },
+        changeAppTheme: (state, action: PayloadAction<'Light' | 'Dark'>) => {
+            localStorage.setItem('theme', action.payload)
+            state.theme = action.payload
+        },
         setAppInitialized: (state, action: PayloadAction<boolean>) => {
             state.appInitialized = action.payload
         },
@@ -35,7 +45,6 @@ const appSlice = createSlice({
 })
 
 
-
-export const { setAppInitialized, setContextMenuActive } = appSlice.actions
+export const { setAppInitialized, setContextMenuActive, appThemeInitializing, changeAppTheme } = appSlice.actions
 
 export default appSlice.reducer

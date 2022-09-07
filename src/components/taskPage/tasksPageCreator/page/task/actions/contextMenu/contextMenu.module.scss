@@ -3,13 +3,30 @@
     top: 60%;
     left: 65%;
     z-index: 100;
-    background: #fff;
     border: 1px solid rgb(205, 197, 197);
     border-radius: 0.4em;
     width: 150%;
     height: 400%;
     padding: 10px 0px;
     box-shadow: 0 0 10px rgb(198, 196, 196);
+    &.light{
+        background: #fff;
+        button{
+            background: #fff;
+        }
+        svg{
+            fill: black;
+        }
+    }
+    &.dark{
+        background: rgb(44, 43, 44);
+        button{
+            background: rgb(44, 43, 44);
+        }
+        svg{
+            fill: white;
+        }
+    }
 }
 .border__bottom{
     margin: 7px 10px;

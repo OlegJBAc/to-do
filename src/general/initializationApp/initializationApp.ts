@@ -1,3 +1,4 @@
+import { appThemeInitializing } from "../../redux/reducers/app-slice"
 import { defaultPagesInitialize } from "../../redux/reducers/defaultPages-slice"
 import { allProjectsTasksInitialize, projectsTasksInitialize } from "../../redux/reducers/projects-slice"
 import { appDispatchType } from "../../redux/store"
@@ -26,6 +27,12 @@ export const initialLocalStorage = (dispatch: appDispatchType) => {
         }
       }
     })
+    if(!localStorageKeys.includes('theme')){
+      localStorage.setItem('theme', 'Light')
+    }else{
+      console.log(localStorage.getItem('theme'))
+      dispatch(appThemeInitializing(localStorage.getItem('theme') as 'Light' | 'Dark' | null))
+    }
     const projects: string | null = localStorage.getItem('projects')
     const defaultPages: string | null = localStorage.getItem('defaultPages')
     const allProjectsTasks: string | null = localStorage.getItem(constAllProjectsTasks)

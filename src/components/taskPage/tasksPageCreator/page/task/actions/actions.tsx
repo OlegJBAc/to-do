@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react"
 import s from './actions.module.scss'
-import penIcon from '../../../../../../general/svgs/penIcon.svg'
-import threeDots from '../../../../../../general/svgs/threeDots.svg'
+import { ReactComponent as PenIcon } from '../../../../../../general/svgs/penIcon.svg'
+import { ReactComponent as ThreeDots } from '../../../../../../general/svgs/threeDots.svg'
 import ContextMenu from "./contextMenu/contextMenu"
 import { taskType } from "../../../../../../types/types"
 
@@ -19,8 +19,8 @@ const Actions: FC<propsType> = ({ setEditMode, contextMenuActive, setContextMenu
     }
     return (
         <div className={s.actions}>
-            <img src={penIcon} onClick={() => setEditMode(true)}/>
-            <img src={threeDots} onClick={activateContextMenu}/>
+            <PenIcon onClick={() => setEditMode(true)}/>
+            <ThreeDots onClick={activateContextMenu}/>
             {contextMenuActive === task.id && <ContextMenu setContextMenuActive={setContextMenuActive}
                                                             setEditMode={setEditMode}
                                                             projectName={projectName}

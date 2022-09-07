@@ -1,19 +1,55 @@
 .header{
     height: 50px;
-    background: linear-gradient(45deg, rgb(68, 0, 255) 40%, white, rgb(115, 8, 255) 60%);
+    // background: linear-gradient(45deg, rgb(68, 0, 255) 40%, white, rgb(115, 8, 255) 60%);
+    background: rgb(152, 61, 238);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &.light{
+        background: rgb(152, 61, 238);
+        color: white;
+    }
+    &.dark{
+        background: rgb(44, 43, 44);
+        color: white;
+    }
+    &__right{
+        display: flex;
+        align-items: center;
+    }
 }
 .sideBarVis__btn{
     position: relative;
     width: 40px;
     height: 40px;
-    margin-left: 5em;
-    background: rgb(68, 0, 255);
+    margin-left: 2em;
     transition-duration: 0.2s;
     border: none;
-    color: white;
+    &.light{
+        background: rgb(114, 22, 201) !important;
+        span{
+            background-color: white;
+        }
+        span::before{
+            background-color: white;
+        }
+        span::after{
+            background-color: white;
+        }
+    }
+    &.dark{
+        background: rgb(20, 20, 20) !important;
+        span{
+            background-color: whitesmoke;
+        }
+        span::before{
+            background-color: whitesmoke;
+        }
+        span::after{
+            background-color: whitesmoke;
+        }
+    }
+
     border-radius: 50%;
     cursor: pointer;
     span{
@@ -22,7 +58,7 @@
         left: 50%; margin-left: -10px;
         width: 20px;
         height: 2px;
-        background-color: white;
+
     }
     span::before{
         content: '';
@@ -31,7 +67,6 @@
         left: 50%; margin-left: -10px;
         width: 20px;
         height: 2px;
-        background-color: white;
         transition-duration: 0.3s;
     }
    span::after{
@@ -41,7 +76,6 @@
         left: 50%; margin-left: -10px;
         width: 20px;
         height: 2px;
-        background-color: white;
         transition-duration: 0.3s;
     }
 }
@@ -69,4 +103,44 @@
     color: white;
     box-shadow: inset 0px 0px 3px rgb(184, 172, 192);
     cursor: pointer;
+}
+.theme__toggle{
+    width: 80px;
+    height: 32px;
+    margin: 10px 10em 10px 0 ;
+    padding: 0px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    border: 2px solid gray;
+    &:before{
+        content: '';
+        width: 30px;
+        height: 29px;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &.light{
+        &:before{
+            transform: translateX(2%);
+            transform: translateY(-2%);
+            background-color: black;
+            transition-duration: 1s;
+        }
+        background-color: white;
+    }
+    &.dark{
+        &:before{
+            transform: translateX(153%);
+            height: 28px;
+            background-color: white;
+            transition-duration: 1s;
+        }
+        background-color: rgba(0, 0, 0, 0.897);
+    }
 }

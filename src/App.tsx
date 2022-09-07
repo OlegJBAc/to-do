@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import {  Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import s from './App.module.scss'
+import Layout from './components/layout/layout';
 import Login from './components/login/login';
 import MainLayout from './components/mainLayout/mainLayout';
 import NotFound from './components/notFound/notFound';
@@ -40,6 +41,7 @@ const App = () => {
     return <Loader/>
   }
   return (
+    <Layout>
       <div className={s.app}>
         <Routes>
           <Route path='/' element={<MainLayout/>}>
@@ -49,6 +51,7 @@ const App = () => {
           <Route path='*' element={<NotFound/>}/>
         </Routes>
       </div>
+    </Layout>
   );
 }
 

@@ -2,14 +2,19 @@ import React from "react"
 import { Field, Form, Formik } from "formik"
 import s from './login.module.scss'
 import { logInThunk } from "../../redux/reducers/auth-slice"
-import { useAppDispatch } from "../../hooks/hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
 import { useNavigate } from "react-router-dom"
 import { constAllProjectsTasks } from "../../general/constants/constants"
+import cn from 'classnames'
+import cnBind from 'classnames/bind'
+import { getAppTheme } from "../../redux/selectors"
 
 
 const Login = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const appTheme = useAppSelector(getAppTheme) 
+    const cx = cnBind.bind(s)
     const submit = (values: valuesType, { setSubmitting }: submitType ) => {
         dispatch(logInThunk({ email: values.email, 
                               password: values.password, 
@@ -24,7 +29,10 @@ const Login = () => {
     }
     return(
         <div className={s.app}>
-            <div className={s.login}>
+            <div className={cx('login', {
+                light: appTheme === 'Light',
+                dark: appTheme === 'Dark',
+            })}>
                 <div className={s.container}>
                     <Formik initialValues={{ email: '', password: '', rememberMe: false}} onSubmit={submit}>
                     {({ isSubmitting }) => (

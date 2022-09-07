@@ -1,7 +1,9 @@
 .container{
     width: 80%;
+    padding-top: 1em;
     padding-right: 5em;
     transition-duration: 0.5s;
+    min-height: 93.5vh;
 }
 #sideBar__invisible{
     transform: translateX(-8%);

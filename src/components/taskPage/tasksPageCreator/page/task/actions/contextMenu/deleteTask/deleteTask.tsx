@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import s from './deleteTask.module.scss'
-import deleteIcon from '../../../../../../../../general/svgs/deleteIcon.svg'
+import { ReactComponent as DeleteIcon} from '../../../../../../../../general/svgs/deleteIcon.svg'
 import { useAppDispatch } from "../../../../../../../../hooks/hooks"
 import { deleteTask } from "../../../../../../../../redux/reducers/projects-slice"
 import { taskType } from "../../../../../../../../types/types"
@@ -20,7 +20,7 @@ const DeleteTask: FC<propsType> = ({ projectName, task }) => {
     return (
         <>
             <button className={s.delete} onClick={deleteFunc}>            
-                <img src={deleteIcon}/>
+                <DeleteIcon className={s.deleteIcon}/>
                 <span>Delete Task</span>
             </button>
         </>

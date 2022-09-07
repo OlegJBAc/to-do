@@ -8,10 +8,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(29, 28, 28, 0.192);
+    background: rgba(71, 2, 99, 0.192);
 }
 .createProject{
     padding: 5em;
     border-radius: 0.5em;
-    background: white;
+
+    &.light{
+        background: white;
+    }
+    &.dark{
+        background: rgb(40, 27, 53);
+    }
 }

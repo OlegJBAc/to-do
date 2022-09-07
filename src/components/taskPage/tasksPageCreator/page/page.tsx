@@ -9,11 +9,13 @@ import { constAllProjectsTasks } from "../../../../general/constants/constants"
 
 const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
     const [contextMenuActive, setContextMenuActive] = useState<null | string>(null)
+    
     useEffect(() => {
         return () => {
             setContextMenuActive('')
         }
     }, [getCurrentPageTasks])
+
     return (
         <div className={s.page}>
             {currentPage !== constAllProjectsTasks && <CreateTask project={currentPage}/>}
