@@ -21,7 +21,7 @@ const defaultPagesSlice = createSlice({
             }
         },
         addTaskToDefaultPage: (state, action: PayloadAction<{ projectName: 'today', task: taskType }>) => {
-            const { projectName, task } = action.payload
+            let { projectName, task } = action.payload
             const isExist = checkTaskExisting(state.defaultPages[projectName], task.name)
             if(!isExist){
                 state.defaultPages[projectName].push(task)

@@ -15,7 +15,7 @@ const TasksPageCreator = () => {
     const projects = useAppSelector(getProjects)
     const defaultPages = useAppSelector(getDefaultPages)
     const getCurrentPageTasks = (): taskType[] => {
-        const currentPage = location.pathname.slice(1)
+        const currentPage = checkForEncodingCurrentPage()
         const defaultPagesNames = ['today']
         if(!defaultPagesNames.includes(currentPage) && currentPage !== constAllProjectsTasks){
             return projects[currentPage]
@@ -28,10 +28,15 @@ const TasksPageCreator = () => {
             }
         }
     }
-    
+    const checkForEncodingCurrentPage = () => {
+        if(location.pathname.slice(1).indexOf('%') !== -1){
+            return decodeURI(location.pathname.slice(1))
+        }
+        return location.pathname.slice(1)
+    }
     return (
         <div className={s.container} id={sideBarIsVisible ? s.sideBar__visible : s.sideBar__invisible}>
-            <Page getCurrentPageTasks={getCurrentPageTasks} currentPage={location.pathname.slice(1)}/>
+            <Page getCurrentPageTasks={getCurrentPageTasks} currentPage={checkForEncodingCurrentPage()}/>
         </div>
     )
 }

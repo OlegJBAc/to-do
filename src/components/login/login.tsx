@@ -61,10 +61,10 @@ const Login = () => {
                                         <img src={captchaURL}/>
                                         <Field name='captcha' placeholder='Enter captcha...'/>
                                     </div> */}
-                                    <button type="submit" disabled={isSubmitting}>
-                                        <span>Sign in</span>
-                                    </button>
                                 </div>
+                                <button type="submit" disabled={isSubmitting}>
+                                    <span>Sign in</span>
+                                </button>
                             </div>
                         </Form>
                     )}

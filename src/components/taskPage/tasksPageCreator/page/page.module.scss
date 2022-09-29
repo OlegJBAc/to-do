@@ -1,5 +1,19 @@
 .page{
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     padding: 0.5em 1em 1em 1em;
+    transition-duration: 0.5s;
+}
+.sideBarInvisible{
+    width: 100%;
+}
+@media screen and (max-width: 992px) {
+    .page{
+        width: 120%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .page{
+        width: 90%;
+    }
 }

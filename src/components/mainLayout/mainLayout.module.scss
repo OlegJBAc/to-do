@@ -1,7 +1,13 @@
 .mainLayout{
     min-height: 100%;
+    width: 100%;
 }
 .content{
     display: flex;
     min-height: 100%;
+}
+@media screen and (max-width: 1200px){
+    .mainLayout{
+        position: relative;
+    }
 }

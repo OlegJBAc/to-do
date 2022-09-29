@@ -1,3 +1,8 @@
+$main-light-background-color: rgb(249, 244, 244);
+$main-dark-background-color: rgb(17, 17, 17);
+
+$input-top-padding: 3px;
+$input-side-padding: 8px; 
 .app{
     height: 100vh;
     display: flex;
@@ -6,22 +11,27 @@
 }
 .login{
     width: 40%;
-    min-height: 50%;
+    min-height: 53%;
     border-radius: 1.3em;
-    
     border: 1px solid gray;
     display: flex;
     justify-content: center;
     align-items: center;
     &.light{
-        background: rgb(249, 244, 244);
+        background: main-light-background-color;
+        label::before{
+            border: 1px solid black;
+        }
     }
     &.dark{
-        background: rgb(17, 17, 17);
+        background: main-dark-background-color;
+        label::before{
+            border: 1px solid white;
+        }
     }
 }
 .container{
-    width: 50%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,14 +97,14 @@ input[type='checkbox']:checked + label::before{
         input{
             align-self: center;
             height: 1.5em;
-            width: 75%;
+            width: 100%;
             margin-top: 0.8em;
             font-size: 1.05em;
-            padding: 3px 8px;
+            padding: $input-top-padding $input-side-padding;
             border-radius: 0.7em;
         }
         span{
-            margin-left: 1.55em;
+            margin-right: 0.5em;
         }
     }
     &__captcha{
@@ -120,20 +130,20 @@ input[type='checkbox']:checked + label::before{
         input{
             align-self: center;
             height: 1.5em;
-            width: 75%;
+            width: 100%;
             font-size: 1.05em;
             margin-top: 0.8em;
-            padding: 3px 8px;
+            padding: $input-top-padding $input-side-padding;
             border-radius: 0.7em;
         }
         span{
-            margin-left: 1.55em;
+            margin-right: 0.5em;
         }
     }
     &__rememberMe{
         display: flex;
         align-items: baseline;
-        margin: 1em 0em 1em 1.85em;
+        margin: 1em 0em 1em 0em;
         span{
             font-size: 1.1em;
             margin-left: 1.2em;
@@ -142,32 +152,73 @@ input[type='checkbox']:checked + label::before{
     &__rememberMe_wrap{
         display: flex;
         flex-direction: column;
-        button{
-            align-self: center;
-            width: 81.5%;
-            background-image: linear-gradient(to right, #6e0ebc 10%, #92fef778  51%, #001aff  100%);
-            padding: 5px 10px;
-            text-align: center;
-            text-transform: uppercase;
-            transition: 0.5s;
-            background-size: 200% auto;
-            color: white;            
-            box-shadow: 0 0 5px #eee;
-            border-radius: 0.3em;
-            display: block;
-            span{
-                font-size: 1.2em;
-                font-weight: 600;
-                font-style: italic;
-                letter-spacing: 0.19em;
-            }
-        }
     }
     
+    button{
+        align-self: center;
+        width: 105%;
+        background-image: linear-gradient(to right, #6e0ebc 10%, #92fef778  51%, #001aff  100%);
+        padding: 0.7em 0em;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;            
+        border-radius: 0.3em;
+        display: block;
+        span{
+            font-size: 1.2em;
+            font-weight: 600;
+            font-style: italic;
+            letter-spacing: 0.19em;
+        }
+    }
     button:hover{
         cursor: pointer;
         background-position: right center;
         color: rgb(250, 173, 8);
         text-decoration: none; 
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .login{
+        width: 100%;
+        min-height: 53%;
+        border: none;
+    }
+    .forms{
+
+        &__email{
+            margin: 0em;
+            input{
+                width: calc(100% - $input-side-padding * 2);
+                font-size: 1.2em;
+                margin: 0em;
+                border-radius: 0px;
+            }
+            span{
+                display: none;
+            }
+        }
+        &__password{
+            margin: 0em;
+            input{
+                width: calc(100% - $input-side-padding * 2);
+                font-size: 1.2em;
+                margin: 0em;
+                border-radius: 0px;
+            }
+            span{
+                display: none;
+            }
+        }
+        &__rememberMe_wrap{
+            display: none;
+        }
+        button{
+            width: 100%;
+            margin: 1em 0 0 0;
+        }
     }
 }

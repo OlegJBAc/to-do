@@ -1,6 +1,5 @@
 .sideBar{
-    min-width: 20%;
-    max-width: 20%;
+    min-width: 300px;
     padding: 1rem 0.5rem 0.5rem 1rem;
     transition-duration: 0.5s;
     #create__projectBtn{
@@ -51,4 +50,13 @@
 }
 #sideBar__invisible{
     transform: translateX(-100%);
+}
+
+@media screen and (max-width: 768px) {
+    .sideBar{
+        position: fixed;
+        z-index: 100;
+        width: 300px;
+        min-height: 100%;
+    }
 }

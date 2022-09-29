@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { unescape } from "querystring";
 import { constAllProjectsTasks } from "../../general/constants/constants";
 import { projectsType, taskType } from "../../types/types";
 import { actionOnTask, checkProjectExisting, checkTaskExisting } from "./functionForReducers";
@@ -29,7 +30,7 @@ const projectsSlice = createSlice({
             }
         },
         addProject: (state, action: PayloadAction<{ projectName: string }>) => {
-            const { projectName } = action.payload
+            let { projectName } = action.payload
             const isExist = checkProjectExisting(state.projects, projectName)
             if(!isExist){
                 state.projects[projectName] = []
@@ -48,7 +49,8 @@ const projectsSlice = createSlice({
             localStorage.setItem(constAllProjectsTasks, JSON.stringify(state.allProjectsTasks))
         },
         addTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
-            const { projectName, task } = action.payload
+            let { projectName, task } = action.payload
+            projectName = decodeURI(projectName)
             const isExist = checkTaskExisting(state.projects[projectName], task.name)
             if(!isExist){
                 state.projects[projectName].push(task)
