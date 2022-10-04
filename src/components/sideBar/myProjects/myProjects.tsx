@@ -42,7 +42,7 @@ const MyProjects: FC<propsType> = ({ setProjectWasDelete }) => {
                                 {/* @ts-ignore */}
                                 <li onContextMenu={projectContextMenu(projectName)}>
                                     {localContextMenu && 
-                                        <ProjectContextMenuStyles top={coordinates.top} left={coordinates.left}>
+                                        <ProjectContextMenuStyles className={s.projects__delete} top={coordinates.top} left={coordinates.left}>
                                             <ProjectContextMenuBody projectName={coordinates.project}
                                                                     setProjectWasDelete={setProjectWasDelete}/>
                                         </ProjectContextMenuStyles>

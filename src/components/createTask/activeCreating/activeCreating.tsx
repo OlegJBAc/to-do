@@ -72,7 +72,10 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
             <Formik initialValues={{ name: editMode && task ? task.name : '', 
                                      description: editMode && task ? task.description : '' }} 
                     onSubmit={submit}>
-                <Form className={s.forms}>
+                <Form className={cx('forms', {
+                        light: appTheme === 'Light',
+                        dark: appTheme === 'Dark',
+                    })}>
                     <Field name='name' placeholder='Enter task name...'/>
                     <Field name='description' placeholder='Enter task description'/>
                     <div className={s.submit__button_wrap}>

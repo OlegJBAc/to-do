@@ -37,13 +37,29 @@ const MainLayout: FC<propsType> = () => {
         }
     }, [projectWasDelete.wasDelete])
 
+    const closeSideBar = (e: any) => {
+        const body = document.querySelector('body') as HTMLBodyElement
+        const header = document.querySelector('header') as HTMLDivElement
+        const sideBar = document.querySelector('nav')
+        const clickPathFirst = e.composedPath().includes(sideBar)
+        const clickPathSecond = e.composedPath().includes(header)
+
+        if( !clickPathFirst && !clickPathSecond && sideBarIsVisible && body?.clientWidth < 768 ){
+            window.removeEventListener('click', closeSideBar)
+            setSideBarIsVisible(false)
+        }
+    }
+
     return (
         <div className={s.mainLayout}>
-            <Header sideBarIsVisible={sideBarIsVisible} setSideBarIsVisible={setSideBarIsVisible}/>
-            <div className={s.content}>
-                <SideBar setProjectWasDelete={setProjectWasDelete} sideBarIsVisible={sideBarIsVisible}/>
-                <Outlet context={{sideBarIsVisible}} />
-            </div>
+            <Header closeSideBar={closeSideBar} sideBarIsVisible={sideBarIsVisible} 
+                    setSideBarIsVisible={setSideBarIsVisible}/>
+                <div className={s.content}>
+                    <SideBar setProjectWasDelete={setProjectWasDelete} sideBarIsVisible={sideBarIsVisible}
+                             closeSideBar={closeSideBar}
+                    />
+                    <Outlet context={{sideBarIsVisible}} />
+                </div>
         </div>
     )
 }

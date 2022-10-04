@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
 import { logOutThunk } from "../../redux/reducers/auth-slice"
@@ -9,7 +9,7 @@ import { changeAppTheme } from "../../redux/reducers/app-slice"
 import { getAppTheme } from "../../redux/selectors"
 
 
-const Header: FC<propsType> = ({ sideBarIsVisible, setSideBarIsVisible }) => {
+const Header: FC<propsType> = ({ sideBarIsVisible, setSideBarIsVisible, closeSideBar }) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const appTheme = useAppSelector(getAppTheme) 
@@ -18,8 +18,16 @@ const Header: FC<propsType> = ({ sideBarIsVisible, setSideBarIsVisible }) => {
     const changeTheme = () => {
         dispatch(changeAppTheme(appTheme === 'Light' ? 'Dark' : 'Light'))
     }
+    useEffect(() => {
+        if(sideBarIsVisible){
+            setTimeout(() => {
+                window.addEventListener('click', closeSideBar)
+            }, 0)
+        }
+    }, [sideBarIsVisible])
+
     const setSideBarVisibility = () => {
-            // @ts-ignore
+        // @ts-ignore
         return setSideBarIsVisible((sideBarIsVisible: boolean) => {
             return sideBarIsVisible ? false : true
         })
@@ -32,7 +40,7 @@ const Header: FC<propsType> = ({ sideBarIsVisible, setSideBarIsVisible }) => {
         })
     }
     return (
-        <div className={cx('header', {
+        <header className={cx('header', {
                 light: appTheme === 'Light',
                 dark: appTheme === 'Dark',
             })}>
@@ -54,7 +62,7 @@ const Header: FC<propsType> = ({ sideBarIsVisible, setSideBarIsVisible }) => {
                     <span>LogOut</span>
                 </button>
             </div>
-        </div>
+        </header>
     )
 }
 
@@ -64,4 +72,5 @@ export default Header
 interface propsType {
     sideBarIsVisible: boolean
     setSideBarIsVisible: (sideBarIsVisible: boolean) => void
+    closeSideBar: (e: any) => void
 }

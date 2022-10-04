@@ -5,7 +5,7 @@
     z-index: 100;
     border: 1px solid rgb(205, 197, 197);
     border-radius: 0.4em;
-    width: 150%;
+    width: 200px;
     height: 400%;
     padding: 10px 0px;
     box-shadow: 0 0 10px rgb(198, 196, 196);
@@ -31,4 +31,11 @@
 .border__bottom{
     margin: 7px 10px;
     border-bottom: 1px solid rgb(212, 206, 206);
+}
+
+@media screen and (max-width: 992px) {
+    .menu{
+        left: -180%;
+        width: 180px;
+    }
 }

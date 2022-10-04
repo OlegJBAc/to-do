@@ -12,11 +12,12 @@ import cn from 'classnames'
 import cnBind from 'classnames/bind'
 
 
-const SideBar: FC<propsType> = ({ setProjectWasDelete,  sideBarIsVisible }) => {
+const SideBar: FC<propsType> = ({ setProjectWasDelete,  sideBarIsVisible, closeSideBar }) => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const appTheme = useAppSelector(getAppTheme) 
     const [isProjectCreating, setIsProjectCreating] = useState(false)
+
     const startOrEndProjectCreating = (isStart: boolean, projectName?: string | null) => () => {
         dispatch(setContextMenuActive(isStart))
         setIsProjectCreating(isStart)
@@ -28,7 +29,7 @@ const SideBar: FC<propsType> = ({ setProjectWasDelete,  sideBarIsVisible }) => {
 
 
     return (
-        <div className={cx('sideBar', {
+        <nav className={cx('sideBar', {
                     light: appTheme === 'Light',
                     dark: appTheme === 'Dark',
                 })} id={sideBarIsVisible ? s.sideBar__visible : s.sideBar__invisible}>
@@ -36,7 +37,7 @@ const SideBar: FC<propsType> = ({ setProjectWasDelete,  sideBarIsVisible }) => {
             <MyProjects setProjectWasDelete={setProjectWasDelete}/>
             <button id={s.create__projectBtn} onClick={startOrEndProjectCreating(true)}>Add a new project</button>
                 { isProjectCreating && <AddProject startOrEndProjectCreating={startOrEndProjectCreating}/> }
-        </div>
+        </nav>
     )
 }
 
@@ -46,4 +47,5 @@ export default SideBar
 interface propsType {
     setProjectWasDelete: (ProjectWasDelete: { wasDelete: boolean, projectName: string }) => void
     sideBarIsVisible: boolean
+    closeSideBar: (e: any) => void
 }

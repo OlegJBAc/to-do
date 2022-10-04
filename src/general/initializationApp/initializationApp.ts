@@ -30,7 +30,6 @@ export const initialLocalStorage = (dispatch: appDispatchType) => {
     if(!localStorageKeys.includes('theme')){
       localStorage.setItem('theme', 'Light')
     }else{
-      console.log(localStorage.getItem('theme'))
       dispatch(appThemeInitializing(localStorage.getItem('theme') as 'Light' | 'Dark' | null))
     }
     const projects: string | null = localStorage.getItem('projects')

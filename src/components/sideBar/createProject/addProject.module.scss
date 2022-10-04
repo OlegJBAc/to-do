@@ -18,6 +18,24 @@
         background: white;
     }
     &.dark{
-        background: rgb(40, 27, 53);
+        background: rgb(122, 3, 201);
+    }
+}
+.addProject__btn{
+    margin-top: 1em;
+    width: 95.5%;
+    padding: 7px;
+    color: white !important;
+    border: none;
+    background: rgb(155, 4, 201) !important;
+    cursor: pointer;
+}
+.addProject__input{
+    padding: 5px;
+    width: 90%;
+}
+@media screen and (max-width: 768px){
+    .createProject{
+        padding: 5em 2em;
     }
 }

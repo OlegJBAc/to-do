@@ -19,6 +19,7 @@ const AddProject: FC<propsType> = ({ startOrEndProjectCreating }) => {
     }
     const justEndCreating = (e: any) => {
         if(e.target === e.currentTarget){
+            debugger
             startOrEndProjectCreating(false, null)() //***Necessary change***//
         }
     }
@@ -31,7 +32,7 @@ const AddProject: FC<propsType> = ({ startOrEndProjectCreating }) => {
                 })}>
                 <Formik initialValues={{ addProject: '' }} onSubmit={submit}>
                     <Form>
-                        <Field name='addProject'/>
+                        <Field name='addProject' className={s.addProject__input} placeholder={'Enter name of project'}/>
                         <button type="submit" className={s.addProject__btn}>Add project</button>
                     </Form>
                 </Formik>
