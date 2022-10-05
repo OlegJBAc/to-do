@@ -144,3 +144,9 @@
         background-color: rgba(0, 0, 0, 0.897);
     }
 }
+
+@media screen and (max-width: 768px){
+    .theme__toggle{
+        margin-right: 2.5em;
+    }
+}

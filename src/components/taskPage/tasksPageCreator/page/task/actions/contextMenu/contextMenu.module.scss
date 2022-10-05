@@ -39,3 +39,9 @@
         width: 180px;
     }
 }
+@media screen and (max-width: 500px){
+    svg{
+        min-width: 17px;
+        min-height: 17px;
+    }
+}
