@@ -1,16 +1,6 @@
 .menu{
-    position: absolute;
-    top: 60%;
-    left: 65%;
-    z-index: 100;
-    border: 1px solid rgb(205, 197, 197);
-    border-radius: 0.4em;
-    width: 200px;
-    height: 400%;
-    padding: 10px 0px;
-    box-shadow: 0 0 10px rgb(198, 196, 196);
+    min-width: 180px;
     &.light{
-        background: #fff;
         button{
             background: #fff;
         }
@@ -19,7 +9,6 @@
         }
     }
     &.dark{
-        background: rgb(44, 43, 44);
         button{
             background: rgb(44, 43, 44);
         }
@@ -32,11 +21,13 @@
     margin: 7px 10px;
     border-bottom: 1px solid rgb(212, 206, 206);
 }
-
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 992px){
     .menu{
-        left: -180%;
-        width: 180px;
+        min-width: 160px;
+    }
+    svg{
+        min-width: 17px;
+        min-height: 17px;
     }
 }
 @media screen and (max-width: 500px){

@@ -11,7 +11,7 @@ const CreateTask: FC<propsType> = ({ project, editMode, setEditMode, task }) => 
         <>
             {addMode
                 ? <ActiveCreating project={project} setAddMode={setAddMode}  editMode={editMode} 
-                                  setEditMode={setEditMode}/>
+                                  setEditMode={setEditMode} task={task}/>
                 : editMode
                     ? <ActiveCreating project={project} setAddMode={setAddMode}  editMode={editMode}
                                       setEditMode={setEditMode} task={task}/>
@@ -27,5 +27,5 @@ interface propsType {
     project: string
     editMode?: boolean
     setEditMode?: (editMode: boolean) => void
-    task?: taskType
+    task: taskType
 }

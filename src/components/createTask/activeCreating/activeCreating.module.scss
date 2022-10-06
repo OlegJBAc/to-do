@@ -35,6 +35,10 @@
         color: indigo;
         text-decoration: none; 
     }
+    &__bottom{
+        display: flex;
+        justify-content: space-between;
+    }
 }
 .forms{
     display: flex;
@@ -75,3 +79,11 @@
     }
 }
 
+.priority{
+    &__icon{
+        color: black;
+        width: 15px;
+        margin-left: 7px;
+        cursor: pointer;
+    }
+}

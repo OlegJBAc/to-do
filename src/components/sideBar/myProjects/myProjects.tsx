@@ -2,24 +2,36 @@ import React, { FC, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { useAppSelector } from "../../../hooks/hooks"
 import { getAppTheme, getProjectsNames } from "../../../redux/selectors"
-import { ProjectContextMenuBody, ProjectContextMenuStyles } from "../projectContextMenu/projectContextMenu"
+import { ContextMenuBody, ContextMenuStyles } from "../../contextMenu/contextMenu"
 import s from './myProjects.module.scss'
 import { v4 } from 'uuid'
 import cn from 'classnames'
 import cnBind from 'classnames/bind'
+import { useContextMenu } from "../../../hooks/useContextMenu"
 
-
+const DeleteButton: FC<any> = ({ projectName, setProjectWasDelete}) => {
+    return (
+        <div>
+            <button onClick={() => {
+                setProjectWasDelete({ wasDelete: true, projectName: projectName })}}>
+                    <span>Delete</span>
+             </button>
+        </div>
+    )
+}
 
 const MyProjects: FC<propsType> = ({ setProjectWasDelete }) => {
-    const [localContextMenu, setLocalContextMenu] = useState(false)
+
     const appTheme = useAppSelector(getAppTheme)
     const cx = cnBind.bind(s)
+    
+    const { coordinates, 
+        menuParams,
+        localContextMenu,
+        setLocalContextMenu, 
+        activateContextMenu 
+    } = useContextMenu({  })
 
-    const [coordinates, setCoordinates] = useState({
-        project: '',
-        top: 0,
-        left: 0,
-    })
     const projectsNames = useAppSelector(getProjectsNames)
 
     useEffect(() => {
@@ -29,15 +41,7 @@ const MyProjects: FC<propsType> = ({ setProjectWasDelete }) => {
             window.removeEventListener('click', disableContextMenu)
         }
     }, [])
-    const projectContextMenu = (projectName: string) => (e: MouseEvent) => {
-        e.preventDefault()
-        setLocalContextMenu(true)
-        setCoordinates({
-            project: projectName,
-            top: e.pageY,
-            left: e.pageX
-        })
-    }
+   
     return(
         <>
             <h2>My Projects</h2>
@@ -51,12 +55,17 @@ const MyProjects: FC<propsType> = ({ setProjectWasDelete }) => {
                                         dark: appTheme === 'Dark',
                                     })}
                                     // @ts-ignore
-                                    onContextMenu={projectContextMenu(projectName)}>
+                                    onContextMenu={(e: any) => activateContextMenu(projectName, e)}>
                                     {localContextMenu && 
-                                        <ProjectContextMenuStyles className={s.projects__delete} top={coordinates.top} left={coordinates.left}>
-                                            <ProjectContextMenuBody projectName={coordinates.project}
-                                                                    setProjectWasDelete={setProjectWasDelete}/>
-                                        </ProjectContextMenuStyles>
+                                        <ContextMenuStyles className={s.projects__delete} top={coordinates.top}      
+                                        left={coordinates.left} menuParams={menuParams}>
+                                            <ContextMenuBody
+                                                bodyComponent={
+                                                    <DeleteButton projectName={projectName}
+                                                                  setProjectWasDelete={setProjectWasDelete}/>
+                                                }
+                                                />
+                                        </ContextMenuStyles>
                                     }
                                     <span>{projectName}</span>
                                 </li>

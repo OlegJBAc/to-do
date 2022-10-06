@@ -27,6 +27,7 @@ const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
             sideBarVisible: sideBarIsVisible,
             sideBarInvisible: !sideBarIsVisible,
         })}>
+            {/* @ts-ignore */}
             {currentPage !== constAllProjectsTasks && <CreateTask project={currentPage}/>}
             <div className={s.tasks}>
                 {getCurrentPageTasks() && getCurrentPageTasks().map(task => {

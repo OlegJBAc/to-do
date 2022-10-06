@@ -1,30 +1,55 @@
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import s from './actions.module.scss'
 import { ReactComponent as PenIcon } from '../../../../../../general/svgs/penIcon.svg'
 import { ReactComponent as ThreeDots } from '../../../../../../general/svgs/threeDots.svg'
 import ContextMenu from "./contextMenu/contextMenu"
 import { taskType } from "../../../../../../types/types"
+import { useContextMenu } from "../../../../../../hooks/useContextMenu"
+import { ContextMenuBody, ContextMenuStyles } from "../../../../../contextMenu/contextMenu"
 
 
 const Actions: FC<propsType> = ({ setEditMode, contextMenuActive, setContextMenuActive, projectName, task }) => {
-    const activateContextMenu = () => {
+    const { coordinates, 
+        menuParams,
+        localContextMenu,
+        setLocalContextMenu, 
+        activateContextMenu 
+    } = useContextMenu({  })
+
+    const toggleContextMenu = (e: any) => {
         {/* @ts-ignore */}
-        setContextMenuActive((contextMenuActive: null | string) => {
-            if(contextMenuActive !== task.id){
-                return contextMenuActive = task.id
-            }else{
-                return contextMenuActive = null
-            }
-        })
+        activateContextMenu(null, e)
     }
+
+    useEffect(() => {
+        if(localContextMenu){
+            const checkClick = (e: any) => {
+                let contextMenuElem = document.querySelector('.context__menu')
+                const clickPathFirst = e.composedPath().includes(contextMenuElem)
+                if( !clickPathFirst && localContextMenu ){
+                    window.removeEventListener('click', checkClick)
+                    setLocalContextMenu(false)
+                } 
+            }
+            setTimeout(() => {
+                window.addEventListener('click', checkClick)
+            }, 0)
+        }
+    }, [localContextMenu])
+
     return (
         <div className={s.actions}>
             <PenIcon onClick={() => setEditMode(true)}/>
-            <ThreeDots onClick={activateContextMenu}/>
-            {contextMenuActive === task.id && <ContextMenu setContextMenuActive={setContextMenuActive}
-                                                            setEditMode={setEditMode}
-                                                            projectName={projectName}
-                                                            task={task}/>}
+            <ThreeDots onClick={toggleContextMenu}/>
+            { localContextMenu && <ContextMenuStyles className={s.projects__delete} top={coordinates.top}  
+                                        left={coordinates.left} menuParams={menuParams}>
+                                        <ContextMenuBody bodyComponent={
+                                            <ContextMenu setContextMenuActive={setContextMenuActive}
+                                                setEditMode={setEditMode}
+                                                projectName={projectName}
+                                                task={task}/>}/>
+                                        </ContextMenuStyles>
+            }
         </div>
     )
 }

@@ -1,0 +1,12 @@
+.context__menu{
+    padding: 1em;
+    border-radius: 0.5em;
+    &.light{
+        color: black;
+        background: white;
+    }
+    &.dark{
+        color: white;
+        background: rgb(44, 43, 44);
+    }
+}
