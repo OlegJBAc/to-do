@@ -19,7 +19,6 @@ const AddProject: FC<propsType> = ({ startOrEndProjectCreating }) => {
     }
     const justEndCreating = (e: any) => {
         if(e.target === e.currentTarget){
-            debugger
             startOrEndProjectCreating(false, null)() //***Necessary change***//
         }
     }

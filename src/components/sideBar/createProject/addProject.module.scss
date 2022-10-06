@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(71, 2, 99, 0.192);
+    background: rgba(8, 2, 10, 0.192);
 }
 .createProject{
     padding: 5em;
@@ -18,20 +18,24 @@
         background: white;
     }
     &.dark{
-        background: rgb(122, 3, 201);
+        background: rgb(25, 24, 26) !important;
+        box-shadow: 0px 0px 25px black;
     }
 }
 .addProject__btn{
     margin-top: 1em;
     width: 95.5%;
-    padding: 7px;
+    padding: 12px 10px;
+    border-radius: 0.3em;
     color: white !important;
     border: none;
     background: rgb(155, 4, 201) !important;
     cursor: pointer;
 }
 .addProject__input{
+    height: 25px;
     padding: 5px;
+    border-radius: 0.3em;
     width: 90%;
 }
 @media screen and (max-width: 768px){
