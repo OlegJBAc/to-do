@@ -19,7 +19,12 @@ export const ContextMenuStyles = styled.div<ContextMenuProps>`
     ${({ top, left, menuParams }: ContextMenuProps) => css`
         top: ${top + 10}px;
         left: ${left}px;
+        @media screen and (max-width: 768px){
+            top: ${top + menuParams.top}px ;
+            left: ${left + menuParams.left}px ;
+        }
     `}
+
     button{
         word-break: initial;
         background: purple;
@@ -50,8 +55,6 @@ type ContextMenuProps = {
     top: number;
     left: number;
     menuParams: {
-        height: string
-        width: string
-        background: string
+        [key: string]: number
     }
 };

@@ -1,9 +1,11 @@
 import { useState } from "react"
 
+
 const coordinatesDefault = { 
     projectName: null,
     top: 0, 
-    left: 0, }
+    left: 0, 
+}
 const paramsDefault = {
     height: `${100}px`,
     width: `${150}px`,
@@ -12,6 +14,7 @@ const paramsDefault = {
 
 export const useContextMenu = ({ coordinatesCustom=coordinatesDefault, 
                                  paramsCustom=paramsDefault,
+                                 sideBarIsVisible=false,
                             }: useContextMenuType) => {
 
     const [coordinates, setCoordinates] = useState({
@@ -25,18 +28,18 @@ export const useContextMenu = ({ coordinatesCustom=coordinatesDefault,
         background: paramsCustom.background,
     })
     const [localContextMenu, setLocalContextMenu] = useState(false)
-    
+
+
     const activateContextMenu = (projectName: string | null= null, e: any) => {
-        console.log(e)
         e.preventDefault()
         setLocalContextMenu(localContextMenu ? false : true)
         setCoordinates({
             projectName: coordinatesCustom.projectName,
-            top: e.pageY,
-            left: e.pageX
+            top: sideBarIsVisible ? e.pageY : e.pageY - 50 ,
+            left: sideBarIsVisible ? e.pageX : e.pageX - 200,
         })
     }
-    return { coordinates, menuParams, localContextMenu, setLocalContextMenu, activateContextMenu }
+    return { coordinates, setCoordinates, menuParams, localContextMenu, setLocalContextMenu, activateContextMenu }
 }
 
 interface useContextMenuType {
@@ -48,4 +51,5 @@ interface useContextMenuType {
     paramsCustom?: {
         [key: string]: string
     }
+    sideBarIsVisible?: boolean
 }

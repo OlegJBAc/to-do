@@ -6,15 +6,17 @@ import ContextMenu from "./contextMenu/contextMenu"
 import { taskType } from "../../../../../../types/types"
 import { useContextMenu } from "../../../../../../hooks/useContextMenu"
 import { ContextMenuBody, ContextMenuStyles } from "../../../../../contextMenu/contextMenu"
+import { useOutletContext } from "react-router-dom"
 
 
 const Actions: FC<propsType> = ({ setEditMode, contextMenuActive, setContextMenuActive, projectName, task }) => {
+    const { sideBarIsVisible } = useOutletContext<{ sideBarIsVisible: boolean }>()
     const { coordinates, 
         menuParams,
         localContextMenu,
         setLocalContextMenu, 
         activateContextMenu 
-    } = useContextMenu({  })
+    } = useContextMenu({ sideBarIsVisible })
 
     const toggleContextMenu = (e: any) => {
         {/* @ts-ignore */}
@@ -41,7 +43,8 @@ const Actions: FC<propsType> = ({ setEditMode, contextMenuActive, setContextMenu
         <div className={s.actions}>
             <PenIcon onClick={() => setEditMode(true)}/>
             <ThreeDots onClick={toggleContextMenu}/>
-            { localContextMenu && <ContextMenuStyles className={s.projects__delete} top={coordinates.top}  
+            { localContextMenu && <ContextMenuStyles className={s.projects__delete} top={coordinates.top}
+            //@ts-ignore   
                                         left={coordinates.left} menuParams={menuParams}>
                                         <ContextMenuBody bodyComponent={
                                             <ContextMenu setContextMenuActive={setContextMenuActive}

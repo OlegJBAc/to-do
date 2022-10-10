@@ -20,7 +20,7 @@ import { useContextMenu } from "../../../hooks/useContextMenu"
 const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditMode, task }) => {
     const dispatch = useAppDispatch()
     const appTheme = useAppSelector(getAppTheme)
-
+    const [priorityForCreating, setPriorityForCreating] = useState('none')
 
     const { coordinates, 
             menuParams,
@@ -56,7 +56,7 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
                     id: editMode && task ? task.id : v4(),
                     name: values.name,
                     description: values.description,
-                    priority: 'purple' as taskPriorityType,
+                    priority: priorityForCreating as taskPriorityType,
                     addedAt: new Date().toISOString(),
                     currentProject: projectName
                 } 
@@ -108,17 +108,21 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
                     <Field name='description' placeholder='Enter task description'/>
                     <div className={s.create__bottom}>
                         <div className={s.create__options}>
-                            <button onClick={(e: any) => activateContextMenu(null, e)}>
+                            <button id={s.create__options_btn} onClick={(e: any) => activateContextMenu(null, e)}>
                                 <PriorityIcon className={s.priority__icon}/>
                             </button>
                             {localContextMenu && 
-                                        <ContextMenuStyles className={s.projects__delete} top={coordinates.top}  
-                                        left={coordinates.left} menuParams={menuParams}>
-                                        <ContextMenuBody bodyComponent={
-                                            <SetPriority projectName={project} 
-                                                         task={task} />}/>
-                                        </ContextMenuStyles>
-                                    }
+                                <ContextMenuStyles className={s.projects__delete} top={coordinates.top}
+                                // @ts-ignore
+                                    left={coordinates.left} menuParams={{...menuParams, top: 15, left: 150}}>
+                                    <ContextMenuBody bodyComponent={
+                                        <SetPriority projectName={project} 
+                                                     task={task}
+                                                     isCreating={true}
+                                                     setPriorityForCreating={setPriorityForCreating}
+                                                    />}/>
+                                </ContextMenuStyles>
+                            }
                         </div>
                         <div className={s.submit__button_wrap}>
                             <button type="submit" className={s.submit__button}>

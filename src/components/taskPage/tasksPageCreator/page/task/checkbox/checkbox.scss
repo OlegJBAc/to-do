@@ -1,14 +1,14 @@
-#checkbox{
-    &__none::before{
-       border: 2px solid black; 
-    }
+.checkbox{
+    // &__none::before{
+        
+    // }
     &__orange::before{
-        border: 2px solid orange; 
+        border: 2px solid orange !important;
      }
     &__red::before{
-        border: 2px solid red; 
+        border: 2px solid red !important;
     }
     &__purple::before{
-       border: 2px solid purple; 
+       border: 2px solid purple !important;
     }
 }

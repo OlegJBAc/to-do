@@ -40,6 +40,13 @@
         justify-content: space-between;
     }
 }
+#create__options{
+    &_btn{
+        background: rgba(0, 0, 0, 0) !important;
+        outline: none;
+        border: none;
+    }
+}
 .forms{
     display: flex;
     flex-direction: column;
@@ -86,4 +93,11 @@
         margin-left: 7px;
         cursor: pointer;
     }
+}
+@media screen and (max-width: 420px) {
+    .submit__button{
+         &_wrap{
+            flex-wrap: wrap;
+         }
+     }
 }

@@ -57,7 +57,8 @@ const MyProjects: FC<propsType> = ({ setProjectWasDelete }) => {
                                     // @ts-ignore
                                     onContextMenu={(e: any) => activateContextMenu(projectName, e)}>
                                     {localContextMenu && 
-                                        <ContextMenuStyles className={s.projects__delete} top={coordinates.top}      
+                                        <ContextMenuStyles className={s.projects__delete} top={coordinates.top}
+                                        //@ts-ignore   
                                         left={coordinates.left} menuParams={menuParams}>
                                             <ContextMenuBody
                                                 bodyComponent={

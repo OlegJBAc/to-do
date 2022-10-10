@@ -7,15 +7,22 @@ import { taskPriorityType, taskType } from "../../../../../../../../types/types"
 import s from './setPriority.module.scss'
 
 
-const SetPriority: FC<propsType> = ({ projectName, task }) => {
+const SetPriority: FC<propsType> = ({ projectName, task, isCreating=false, setPriorityForCreating }) => {
     const dispatch = useAppDispatch()
     const setPriorityFunc = (priority: taskPriorityType) => () => {
-        if(!constDefaultPages.includes(projectName)){
-            dispatch(setPriorityTask({ projectName, task: {...task, priority} }))
+        if(!isCreating){
+            if(!constDefaultPages.includes(projectName)){
+                dispatch(setPriorityTask({ projectName, task: {...task, priority} }))
+            }else{
+                dispatch(setPriorityDefaultPageTask({ projectName, task: {...task, priority} }))
+            }
         }else{
-            dispatch(setPriorityDefaultPageTask({ projectName, task: {...task, priority} }))
+            if(setPriorityForCreating){
+                setPriorityForCreating(priority)
+            }
         }
     }
+
     return (
         <div className={s.priority}>
             <h3>Set priority</h3>
@@ -35,4 +42,6 @@ export default SetPriority
 interface propsType {
     projectName: string
     task: taskType
+    isCreating?: boolean
+    setPriorityForCreating?: (priorityForCreating: string) => void
 }
