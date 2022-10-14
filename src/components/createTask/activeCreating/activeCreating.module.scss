@@ -12,7 +12,7 @@
     &.light{
         button{
             background: rgb(136, 7, 187) !important;
-            color: white !important;  
+            color: white !important;
         }
     }
     &.dark{
@@ -35,18 +35,9 @@
         color: indigo;
         text-decoration: none; 
     }
-    &__bottom{
-        display: flex;
-        justify-content: space-between;
-    }
+
 }
-#create__options{
-    &_btn{
-        background: rgba(0, 0, 0, 0) !important;
-        outline: none;
-        border: none;
-    }
-}
+
 .forms{
     display: flex;
     flex-direction: column;
@@ -78,26 +69,3 @@
     }
 }
          
-.submit__button{
-   padding: 5px 10px;
-   margin-right: 10px;
-    &_wrap{
-        display: flex;
-    }
-}
-
-.priority{
-    &__icon{
-        color: black;
-        width: 15px;
-        margin-left: 7px;
-        cursor: pointer;
-    }
-}
-@media screen and (max-width: 420px) {
-    .submit__button{
-         &_wrap{
-            flex-wrap: wrap;
-         }
-     }
-}

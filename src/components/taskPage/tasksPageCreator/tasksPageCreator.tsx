@@ -14,6 +14,7 @@ const TasksPageCreator = () => {
     const allProjectsTasks = useAppSelector(getAllProjectsTasks)
     const projects = useAppSelector(getProjects)
     const defaultPages = useAppSelector(getDefaultPages)
+    
     const getCurrentPageTasks = (): taskType[] => {
         const currentPage = checkForEncodingCurrentPage()
         const defaultPagesNames = ['today']

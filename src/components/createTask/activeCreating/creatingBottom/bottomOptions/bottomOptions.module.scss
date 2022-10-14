@@ -1,0 +1,16 @@
+.priority{
+    &__icon{
+        color: black;
+        width: 15px;
+        margin-left: 7px;
+        cursor: pointer;
+    }
+}
+
+#create__options{
+    &_btn{
+        background: rgba(0, 0, 0, 0) !important;
+        outline: none;
+        border: none;
+    }
+}

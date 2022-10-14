@@ -19,7 +19,7 @@ const AddProject: FC<propsType> = ({ startOrEndProjectCreating }) => {
     }
     const justEndCreating = (e: any) => {
         if(e.target === e.currentTarget){
-            startOrEndProjectCreating(false, null)() //***Necessary change***//
+            startOrEndProjectCreating(false, null)() //*
         }
     }
     const cx = cnBind.bind(s)

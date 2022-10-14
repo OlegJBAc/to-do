@@ -1,0 +1,15 @@
+.submit__button{
+    padding: 5px 10px;
+    margin-right: 10px;
+    &_wrap{
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .submit__button{
+         &_wrap{
+            flex-wrap: wrap;
+         }
+     }
+}

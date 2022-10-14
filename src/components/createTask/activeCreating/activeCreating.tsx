@@ -7,27 +7,16 @@ import { addTaskToDefaultPage, editDefaultPageTask } from "../../../redux/reduce
 import { constDefaultPages } from "../../../general/constants/constants"
 import { v4 } from 'uuid'
 import { taskPriorityType, taskType } from "../../../types/types"
-import cn from 'classnames'
 import cnBind from 'classnames/bind'
-import { changeAppTheme } from "../../../redux/reducers/app-slice"
 import { getAppTheme } from "../../../redux/selectors"
-import priorityIcon from '../../../general/svgs/priorityIcon.svg'
-import { ReactComponent as PriorityIcon } from '../../../general/svgs/priorityIcon.svg'
-import { ContextMenuBody, ContextMenuStyles } from "../../contextMenu/contextMenu"
-import SetPriority from "../../taskPage/tasksPageCreator/page/task/actions/contextMenu/setPriority/setPriority"
 import { useContextMenu } from "../../../hooks/useContextMenu"
+import CreatingBottom from "./creatingBottom/creatingBottom"
 
 const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditMode, task }) => {
     const dispatch = useAppDispatch()
     const appTheme = useAppSelector(getAppTheme)
-    const [priorityForCreating, setPriorityForCreating] = useState('none')
-
-    const { coordinates, 
-            menuParams,
-            localContextMenu,
-            setLocalContextMenu, 
-            activateContextMenu 
-        } = useContextMenu({  })
+    const [ priorityForCreating, setPriorityForCreating ] = useState('none')
+    const { localContextMenu, setLocalContextMenu, } = useContextMenu({  })
 
     const cx = cnBind.bind(s)
 
@@ -86,12 +75,7 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
             }
         }
     }
-    const cancelCreating = () => {
-        setAddMode(false)
-        if(setEditMode){
-            setEditMode(false)
-        }
-    }
+
     return (
         <div className={cx('create', {
             light: appTheme === 'Light',
@@ -106,37 +90,13 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
                     })}>
                     <Field name='name' placeholder='Enter task name...'/>
                     <Field name='description' placeholder='Enter task description'/>
-                    <div className={s.create__bottom}>
-                        <div className={s.create__options}>
-                            <button id={s.create__options_btn} onClick={(e: any) => activateContextMenu(null, e)}>
-                                <PriorityIcon className={s.priority__icon}/>
-                            </button>
-                            {localContextMenu && 
-                                <ContextMenuStyles className={s.projects__delete} top={coordinates.top}
-                                // @ts-ignore
-                                    left={coordinates.left} menuParams={{...menuParams, top: 15, left: 150}}>
-                                    <ContextMenuBody bodyComponent={
-                                        <SetPriority projectName={project} 
-                                                     task={task}
-                                                     isCreating={true}
-                                                     setPriorityForCreating={setPriorityForCreating}
-                                                    />}/>
-                                </ContextMenuStyles>
-                            }
-                        </div>
-                        <div className={s.submit__button_wrap}>
-                            <button type="submit" className={s.submit__button}>
-                                {editMode    
-                                    ? <span>Edit task</span> 
-                                    : <span>Add task</span>
-                                }
-                            </button>
-                            <button className={s.submit__button} type="button" onClick={cancelCreating}>
-                                <span>Cancel</span>
-                            </button>
-                        </div>
-                    </div>
-
+                    <CreatingBottom setPriorityForCreating={setPriorityForCreating} 
+                                    editMode={editMode}
+                                    setEditMode={setEditMode}
+                                    task={task}
+                                    project={project}
+                                    setAddMode={setAddMode}
+                                />
                 </Form>
             </Formik>
         </div>
@@ -149,8 +109,8 @@ export default ActiveCreating
 interface propsType {
     project: string
     setAddMode: (addMode: boolean) => void
-    editMode?: boolean
     setEditMode?: (editMode: boolean) => void
+    editMode?: boolean
     task: taskType
 }
 interface valuesType {
@@ -160,3 +120,4 @@ interface valuesType {
 interface submittingType {
     setSubmitting: (isSubmitted: boolean) => any
 }
+

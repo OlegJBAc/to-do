@@ -1,0 +1,77 @@
+.sideBarVis__btn{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-left: 2em;
+    transition-duration: 0.2s;
+    border: none;
+    &.light{
+        background: rgb(114, 22, 201) !important;
+        span{
+            background-color: white;
+        }
+        span::before{
+            background-color: white;
+        }
+        span::after{
+            background-color: white;
+        }
+    }
+    &.dark{
+        background: rgb(20, 20, 20) !important;
+        span{
+            background-color: whitesmoke;
+        }
+        span::before{
+            background-color: whitesmoke;
+        }
+        span::after{
+            background-color: whitesmoke;
+        }
+    }
+
+    border-radius: 50%;
+    cursor: pointer;
+    span{
+        position: absolute;
+        top: 50%; margin-top: -2px;
+        left: 50%; margin-left: -10px;
+        width: 20px;
+        height: 2px;
+
+    }
+    span::before{
+        content: '';
+        position: absolute;
+        top: 50%; margin-top: -8px;
+        left: 50%; margin-left: -10px;
+        width: 20px;
+        height: 2px;
+        transition-duration: 0.3s;
+    }
+   span::after{
+        content: '';
+        position: absolute;
+        top: 50%; margin-top: 6px;
+        left: 50%; margin-left: -10px;
+        width: 20px;
+        height: 2px;
+        transition-duration: 0.3s;
+    }
+}
+.sideBarVis__btn:hover{
+    background: rgba(8, 1, 102, 0.589);
+}
+#sideBar__invisible{
+    span{
+        height: 0px;
+    }
+    span::before{
+        margin-top: 0px;
+        transform: rotate(45deg);
+    }
+    span::after{
+        margin-top: 0px;
+        transform: rotate(-45deg);
+    }
+}
