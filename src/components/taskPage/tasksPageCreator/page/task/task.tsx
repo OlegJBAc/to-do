@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import s from './task.module.scss'
 import { taskType } from "../../../../../types/types"
 import Checkbox from "./checkbox/checkbox"
@@ -7,18 +7,28 @@ import Actions from "./actions/actions"
 import CreateTask from "../../../../createTask/createTask"
 
 
-const Task: FC<propsType> = ({ task, currentPage, contextMenuActive, setContextMenuActive }) => {
-    const [editMode, setEditMode] = useState(false)
+const Task: FC<propsType> = ({ task, currentPage, contextMenuActive, setContextMenuActive,
+                               editMode, setEditMode }) => {
+    const [isEditing, setIsEditing] = useState(false)
+    
+    useEffect(() => {
+        if(editMode === task.id){
+            setIsEditing(true)
+        }else{
+            setIsEditing(false)
+        }
+    }, [editMode])
 
     return (
         <>
-            {editMode
+            {isEditing
                 ? <CreateTask project={currentPage} editMode={editMode} setEditMode={setEditMode} task={task}/>
                 : <li className={s.task}>
                     <Checkbox taskPriority={task.priority}/>
                     <Body task={task}/>
-                    <Actions setEditMode={setEditMode} contextMenuActive={contextMenuActive} 
-                             setContextMenuActive={setContextMenuActive} task={task} projectName={currentPage}/>
+                    <Actions setEditMode={setEditMode} editMode={editMode} contextMenuActive={contextMenuActive} 
+                             setContextMenuActive={setContextMenuActive} task={task} projectName={currentPage}
+                            />
                 </li>
             }   
         </>
@@ -33,4 +43,6 @@ interface propsType {
     currentPage: string
     contextMenuActive: null | string
     setContextMenuActive: (contextMenuActive: null | string) => void
+    editMode: string
+    setEditMode: (editMode: string) => void
 }

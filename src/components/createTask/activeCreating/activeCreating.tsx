@@ -42,7 +42,7 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
             return {
                 projectName,
                 task: {
-                    id: editMode && task ? task.id : v4(),
+                    id: editMode === task.id && task ? task.id : v4(),
                     name: values.name,
                     description: values.description,
                     priority: priorityForCreating as taskPriorityType,
@@ -63,13 +63,13 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
             if(!defaultPages.includes(project) && task){
                 dispatch(editTask(getCreateTaskPayload(task.currentProject)))
                 if(setEditMode){
-                    setEditMode(false)
+                    setEditMode(task.id)
                 }
             }else{
                 if(task){
                     dispatch(editDefaultPageTask(getCreateTaskPayload(task.currentProject)))
                     if(setEditMode){
-                        setEditMode(false)
+                        setEditMode(task.id)
                     }
                 }
             }
@@ -81,8 +81,8 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
             light: appTheme === 'Light',
             dark: appTheme === 'Dark',
         })}>
-            <Formik initialValues={{ name: editMode && task ? task.name : '', 
-                                     description: editMode && task ? task.description : '' }} 
+            <Formik initialValues={{ name: editMode === task?.id && task ? task.name : '', 
+                                     description: editMode === task?.id && task ? task.description : '' }} 
                     onSubmit={submit}>
                 <Form className={cx('forms', {
                         light: appTheme === 'Light',
@@ -109,8 +109,8 @@ export default ActiveCreating
 interface propsType {
     project: string
     setAddMode: (addMode: boolean) => void
-    setEditMode?: (editMode: boolean) => void
-    editMode?: boolean
+    setEditMode?: (editMode: string) => void
+    editMode?: string
     task: taskType
 }
 interface valuesType {

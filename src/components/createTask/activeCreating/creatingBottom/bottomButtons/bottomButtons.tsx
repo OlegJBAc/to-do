@@ -1,13 +1,14 @@
 import React from "react"
+import { taskType } from "../../../../../types/types"
 import s from './bottomButtons.module.scss'
 
 
-const BottomButtons: React.FC<propsType> = ({ editMode, setEditMode, setAddMode }) => {
+const BottomButtons: React.FC<propsType> = ({ editMode, setEditMode, setAddMode, task }) => {
 
     const cancelCreating = () => {
         setAddMode(false)
         if(setEditMode){
-            setEditMode(false)
+            setEditMode('')
         }
     }
 
@@ -30,7 +31,8 @@ export default BottomButtons
 
 
 interface propsType {
-    editMode?: boolean
+    editMode?: string
     setAddMode: (addMode: boolean) => void
-    setEditMode?: (editMode: boolean) => void
+    setEditMode?: (editMode: string) => void
+    task: taskType
 }

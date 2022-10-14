@@ -9,7 +9,7 @@ import { ContextMenuBody, ContextMenuStyles } from "../../../../../contextMenu/c
 import { useOutletContext } from "react-router-dom"
 
 
-const Actions: FC<propsType> = ({ setEditMode, contextMenuActive, setContextMenuActive, projectName, task }) => {
+const Actions: FC<propsType> = ({ setEditMode, editMode, contextMenuActive, setContextMenuActive, projectName, task }) => {
     const { sideBarIsVisible } = useOutletContext<{ sideBarIsVisible: boolean }>()
     const { coordinates, 
         menuParams,
@@ -41,7 +41,7 @@ const Actions: FC<propsType> = ({ setEditMode, contextMenuActive, setContextMenu
 
     return (
         <div className={s.actions}>
-            <PenIcon onClick={() => setEditMode(true)}/>
+            <PenIcon onClick={() => setEditMode(task.id)}/>
             <ThreeDots onClick={toggleContextMenu}/>
             { localContextMenu && <ContextMenuStyles className={s.projects__delete} top={coordinates.top}
             //@ts-ignore   
@@ -61,7 +61,8 @@ export default Actions
 
 
 interface propsType {
-    setEditMode: (editMode: boolean) => void
+    editMode: string
+    setEditMode: (editMode: string) => void
     contextMenuActive: null | string
     setContextMenuActive: (contextMenuActive: null | string) => void
     projectName: string

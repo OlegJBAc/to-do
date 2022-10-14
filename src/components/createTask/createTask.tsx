@@ -6,7 +6,10 @@ import { taskType } from "../../types/types"
 
 
 const CreateTask: FC<propsType> = ({ project, editMode, setEditMode, task }) => {
+    console.log(project, editMode, setEditMode, task)
+    
     const [addMode, setAddMode] = useState(false)
+
     return (
         <>
             {addMode
@@ -25,7 +28,7 @@ export default CreateTask
 
 interface propsType {
     project: string
-    editMode?: boolean
-    setEditMode?: (editMode: boolean) => void
+    editMode?: string
+    setEditMode?: (editMode: string) => void
     task: taskType
 }

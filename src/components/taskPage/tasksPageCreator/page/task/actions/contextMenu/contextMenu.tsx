@@ -20,7 +20,7 @@ const ContextMenu: FC<propsType> = ({ setContextMenuActive, setEditMode, project
             light: appTheme === 'Light',
             dark: appTheme === 'Dark',
         })}>
-            <EditTask setEditMode={setEditMode}/>
+            <EditTask setEditMode={setEditMode} task={task}/>
             <div className={s.border__bottom}></div>
             <SetPriority projectName={projectName} task={task}/>
             <div className={s.border__bottom}></div>
@@ -34,7 +34,7 @@ export default ContextMenu
 
 interface propsType {
     setContextMenuActive: (contextMenuActive: null | string) => void
-    setEditMode: (editMode: boolean) => void
+    setEditMode: (editMode: string) => void
     projectName: string
     task: taskType
 }

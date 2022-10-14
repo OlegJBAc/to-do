@@ -13,6 +13,7 @@ import cnBind from 'classnames/bind'
 const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
     const { sideBarIsVisible } = useOutletContext<{ sideBarIsVisible: boolean }>()
     const [contextMenuActive, setContextMenuActive] = useState<null | string>(null)
+    const [editMode, setEditMode] = useState<string>('')
 
     const cx = cnBind.bind(s)
 
@@ -33,7 +34,9 @@ const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
                 {getCurrentPageTasks() && getCurrentPageTasks().map(task => {
                     return <Task key={v4()} task={task} currentPage={currentPage}
                                  contextMenuActive={contextMenuActive} 
-                                 setContextMenuActive={setContextMenuActive}/>
+                                 setContextMenuActive={setContextMenuActive}
+                                 editMode={editMode}
+                                 setEditMode={setEditMode}/>
                     })
                 }
             </div>
