@@ -7,11 +7,6 @@
     min-height: 100vw;
     padding: 1rem 0.5rem 0.5rem 1rem;
     transition-duration: 0.5s;
-    #create__projectBtn{
-        padding: 0.5em;
-        cursor: pointer;
-        border-radius: 0.3em;
-    }
     li:hover{
         transition-duration: 1s;
         margin-top: 0.4rem;
@@ -21,19 +16,11 @@
         li:hover{
             background: rgba(187, 84, 247, 0.671);
         }
-        #create__projectBtn{
-            background: rgb(146, 3, 202);
-            color: white;
-        }
     }
     &.dark{
         background: rgb(44, 43, 44);
         li:hover{
             background: rgba(157, 104, 207, 0.836);
-        }
-        #create__projectBtn{
-            background: rgb(118, 0, 214);
-            color: white;
         }
     }
     ul{

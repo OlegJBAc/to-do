@@ -13,18 +13,9 @@ import cnBind from 'classnames/bind'
 
 
 const SideBar: FC<propsType> = ({ setProjectWasDelete,  sideBarIsVisible, closeSideBar }) => {
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
-    const appTheme = useAppSelector(getAppTheme) 
-    const [isProjectCreating, setIsProjectCreating] = useState(false)
 
-    const startOrEndProjectCreating = (isStart: boolean, projectName?: string | null) => () => {
-        dispatch(setContextMenuActive(isStart))
-        setIsProjectCreating(isStart)
-        if(!isStart && projectName){
-            navigate(projectName)
-        }
-    }
+    const appTheme = useAppSelector(getAppTheme) 
+
     const cx = cnBind.bind(s)
 
 
@@ -35,8 +26,6 @@ const SideBar: FC<propsType> = ({ setProjectWasDelete,  sideBarIsVisible, closeS
                 })} id={sideBarIsVisible ? s.sideBar__visible : s.sideBar__invisible}>
             <DefaultProjects/>
             <MyProjects setProjectWasDelete={setProjectWasDelete}/>
-            <button id={s.create__projectBtn} onClick={startOrEndProjectCreating(true)}>Add a new project</button>
-                { isProjectCreating && <AddProject startOrEndProjectCreating={startOrEndProjectCreating}/> }
         </nav>
     )
 }

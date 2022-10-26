@@ -10,4 +10,18 @@
             color: white;
         }
     }
+    &__header{
+        display: flex;
+        align-items: center;
+    }
+}
+#create__projectBtn{
+    border: none;
+    background: rgba(255, 255, 255, 0);
+    padding: 0;
+    margin: 0.65em 0em 0em 9em;
+    cursor: default;
+}
+.onlyPlus{
+    cursor: pointer;
 }
