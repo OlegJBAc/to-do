@@ -23,7 +23,11 @@ const HeaderLeft: React.FC<propsType>  = ({ sideBarIsVisible, setSideBarIsVisibl
                     dark: appTheme === 'Dark',
                 })} id={sideBarIsVisible ? s.sideBar__visible : s.sideBar__invisible}
                     onClick={setSideBarVisibility}>
-                <span></span>
+                <div className={s.spans}>
+                    <span className={s.spans__top}></span>
+                    <span className={s.spans__middle}></span>
+                    <span className={s.spans__bottom}></span>
+                </div>
             </button>
         </>
     )

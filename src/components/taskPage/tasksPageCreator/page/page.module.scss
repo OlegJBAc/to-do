@@ -1,17 +1,14 @@
 .page{
     width: 80%;
     margin: 0 auto;
-    padding: 0.5em 1em 1em 1em;
-    transition-duration: 0.5s;
+    padding: 0em 1em 1em 1em;
+    position: relative;
 }
 
-@media screen and (max-width: 992px) {
-    .page{
-        width: 120%;
-    }
+#sideBarIsInvisible{
+    margin: 0;
 }
-@media screen and (max-width: 768px) {
-    .page{
-        width: 90%;
-    }
-}
+
+
+
+

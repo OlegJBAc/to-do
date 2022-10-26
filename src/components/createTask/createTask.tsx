@@ -5,19 +5,17 @@ import NotActiveCreating from "./notActiveCreating/notActiveCreating"
 import { taskType } from "../../types/types"
 
 
-const CreateTask: FC<propsType> = ({ project, editMode, setEditMode, task }) => {
-    console.log(project, editMode, setEditMode, task)
+const CreateTask: FC<propsType> = ({ project, editMode, setEditMode, task,  pageElem }) => {
     
-    const [addMode, setAddMode] = useState(false)
-
+    const [addMode, setAddMode] = useState<boolean>()
     return (
         <>
             {addMode
                 ? <ActiveCreating project={project} setAddMode={setAddMode}  editMode={editMode} 
-                                  setEditMode={setEditMode} task={task}/>
+                                  setEditMode={setEditMode} task={task} pageElem={pageElem}/>
                 : editMode
                     ? <ActiveCreating project={project} setAddMode={setAddMode}  editMode={editMode}
-                                      setEditMode={setEditMode} task={task}/>
+                                      setEditMode={setEditMode} task={task} pageElem={pageElem}/>
                     : <NotActiveCreating setAddMode={setAddMode}/>
             }
         </>
@@ -31,4 +29,5 @@ interface propsType {
     editMode?: string
     setEditMode?: (editMode: string) => void
     task: taskType
+    pageElem: React.RefObject<HTMLDivElement>
 }

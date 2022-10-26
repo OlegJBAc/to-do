@@ -17,11 +17,11 @@ export const ContextMenuStyles = styled.div<ContextMenuProps>`
     z-index: 100;
     border: 1px solid rgb(205, 197, 197);
     ${({ top, left, menuParams }: ContextMenuProps) => css`
-        top: ${top + 10}px;
+        top: ${top}px;
         left: ${left}px;
         @media screen and (max-width: 768px){
-            top: ${top + menuParams.top}px ;
-            left: ${left + menuParams.left}px ;
+            top: ${top}px ;
+            left: ${left}px ;
         }
     `}
 

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react"
+import React, { FC, useEffect, useRef, useState } from "react"
 import { taskType } from "../../../../types/types"
 import CreateTask from "../../../createTask/createTask"
 import s from './page.module.scss'
@@ -6,16 +6,13 @@ import Task from "./task/task"
 import { v4 } from 'uuid'
 import { constAllProjectsTasks } from "../../../../general/constants/constants"
 import { useOutletContext } from "react-router-dom"
-import cn from 'classnames'
-import cnBind from 'classnames/bind'
 
 
 const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
     const { sideBarIsVisible } = useOutletContext<{ sideBarIsVisible: boolean }>()
     const [contextMenuActive, setContextMenuActive] = useState<null | string>(null)
     const [editMode, setEditMode] = useState<string>('')
-
-    const cx = cnBind.bind(s)
+    const pageElem: React.RefObject<HTMLDivElement> = useRef(null)
 
     useEffect(() => {
         return () => {
@@ -24,10 +21,7 @@ const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
     }, [getCurrentPageTasks])
 
     return (
-        <div className={cx('page', {
-            sideBarVisible: sideBarIsVisible,
-            sideBarInvisible: !sideBarIsVisible,
-        })}>
+        <div ref={pageElem} className={s.page} id={sideBarIsVisible ? s.sideBarVisible : s.sideBarInvisible}>
             {/* @ts-ignore */}
             {currentPage !== constAllProjectsTasks && <CreateTask project={currentPage}/>}
             <div className={s.tasks}>
@@ -36,7 +30,8 @@ const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
                                  contextMenuActive={contextMenuActive} 
                                  setContextMenuActive={setContextMenuActive}
                                  editMode={editMode}
-                                 setEditMode={setEditMode}/>
+                                 setEditMode={setEditMode}
+                                 pageElem={pageElem}/>
                     })
                 }
             </div>

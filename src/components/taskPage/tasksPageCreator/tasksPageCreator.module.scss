@@ -1,23 +1,18 @@
 .container{
-    width: 80%;
+    width: 100%;
+    box-sizing: border-box;
     padding-top: 1em;
-    padding-right: 5em;
+    margin-left: 300px;
     transition-duration: 0.5s;
     min-height: 93.5vh;
+    margin-top: 50px;
 }
+
 #sideBar__invisible{
-    transform: translateX(-10%);
-}
-@media screen and (max-width: 992px) {
-    #sideBar__invisible{
-        transform: translateX(-30%);
-    }
+    margin-left: 0;
 }
 @media screen and (max-width: 768px) {
     .container{
-        transform: translateX(10%);
-    }
-    #sideBar__invisible{
-        transform: translateX(10%);
+        margin-left: 0;
     }
 }

@@ -14,9 +14,9 @@ const BottomButtons: React.FC<propsType> = ({ editMode, setEditMode, setAddMode,
 
     return (
         <div className={s.submit__button_wrap}>
-            <button type="submit" className={s.submit__button}>
+            <button type="submit" className={s.submit__button} >
                 {editMode    
-                    ? <span>Edit task</span> 
+                    ? <span>Edit task</span>
                     : <span>Add task</span>
                 }
             </button>

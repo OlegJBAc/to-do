@@ -1,9 +1,7 @@
 import React, { FC } from "react"
 import s from './notActiveCreating.module.scss'
 import { ReactComponent as PlusIcon } from '../../../general/svgs/plusIcon.svg'
-import cn from 'classnames'
 import cnBind from 'classnames/bind'
-import { changeAppTheme } from "../../../redux/reducers/app-slice"
 import { getAppTheme } from "../../../redux/selectors"
 import { useAppSelector } from "../../../hooks/hooks"
 

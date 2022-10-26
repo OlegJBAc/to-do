@@ -7,8 +7,10 @@ import { taskPriorityType, taskType } from "../../../../../../../../types/types"
 import s from './setPriority.module.scss'
 
 
-const SetPriority: FC<propsType> = ({ projectName, task, isCreating=false, setPriorityForCreating }) => {
+const SetPriority: FC<propsType> = ({ projectName, task, isCreating=false, setPriorityForCreating,
+                                      setLocalContextMenu }) => {
     const dispatch = useAppDispatch()
+
     const setPriorityFunc = (priority: taskPriorityType) => () => {
         if(!isCreating){
             if(!constDefaultPages.includes(projectName)){
@@ -19,6 +21,9 @@ const SetPriority: FC<propsType> = ({ projectName, task, isCreating=false, setPr
         }else{
             if(setPriorityForCreating){
                 setPriorityForCreating(priority)
+                if(setLocalContextMenu){
+                    setLocalContextMenu(false)
+                }
             }
         }
     }
@@ -44,4 +49,5 @@ interface propsType {
     task: taskType
     isCreating?: boolean
     setPriorityForCreating?: (priorityForCreating: string) => void
+    setLocalContextMenu?: (localContextMenu: boolean) => void
 }

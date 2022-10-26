@@ -9,14 +9,16 @@ import { ContextMenuBody, ContextMenuStyles } from "../../../../../contextMenu/c
 import { useOutletContext } from "react-router-dom"
 
 
-const Actions: FC<propsType> = ({ setEditMode, editMode, contextMenuActive, setContextMenuActive, projectName, task }) => {
+const Actions: FC<propsType> = ({ setEditMode, editMode, contextMenuActive, setContextMenuActive, projectName, task,
+    pageElem }) => {
     const { sideBarIsVisible } = useOutletContext<{ sideBarIsVisible: boolean }>()
-    const { coordinates, 
+    const { coordinates,
+        setCoordinates,
         menuParams,
         localContextMenu,
         setLocalContextMenu, 
         activateContextMenu 
-    } = useContextMenu({ sideBarIsVisible })
+    } = useContextMenu({ sideBarIsVisible, isPageContent: true, htmlElem: pageElem, contextElem: 'actions' })
 
     const toggleContextMenu = (e: any) => {
         {/* @ts-ignore */}
@@ -43,15 +45,16 @@ const Actions: FC<propsType> = ({ setEditMode, editMode, contextMenuActive, setC
         <div className={s.actions}>
             <PenIcon onClick={() => setEditMode(task.id)}/>
             <ThreeDots onClick={toggleContextMenu}/>
-            { localContextMenu && <ContextMenuStyles className={s.projects__delete} top={coordinates.top}
-            //@ts-ignore   
-                                        left={coordinates.left} menuParams={menuParams}>
-                                        <ContextMenuBody bodyComponent={
-                                            <ContextMenu setContextMenuActive={setContextMenuActive}
-                                                setEditMode={setEditMode}
-                                                projectName={projectName}
-                                                task={task}/>}/>
-                                        </ContextMenuStyles>
+            { localContextMenu && 
+                <ContextMenuStyles className={s.projects__delete} top={coordinates.top}
+                //@ts-ignore   
+                    left={coordinates.left} menuParams={menuParams}>
+                    <ContextMenuBody bodyComponent={
+                        <ContextMenu setContextMenuActive={setContextMenuActive}
+                            setEditMode={setEditMode}
+                            projectName={projectName}
+                            task={task}/>}/>
+                </ContextMenuStyles>
             }
         </div>
     )
@@ -67,4 +70,5 @@ interface propsType {
     setContextMenuActive: (contextMenuActive: null | string) => void
     projectName: string
     task: taskType
+    pageElem: React.RefObject<HTMLDivElement>
 }

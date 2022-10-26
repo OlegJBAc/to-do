@@ -18,6 +18,7 @@ const MainLayout: FC<propsType> = () => {
         projectName: ''
     })
 
+
     useEffect(() => {
         let currentLocation = location.pathname
         if(currentLocation === '/'){
@@ -54,12 +55,12 @@ const MainLayout: FC<propsType> = () => {
         <div className={s.mainLayout}>
             <Header closeSideBar={closeSideBar} sideBarIsVisible={sideBarIsVisible} 
                     setSideBarIsVisible={setSideBarIsVisible}/>
-                <div className={s.content}>
-                    <SideBar setProjectWasDelete={setProjectWasDelete} sideBarIsVisible={sideBarIsVisible}
-                             closeSideBar={closeSideBar}
-                    />
-                    <Outlet context={{sideBarIsVisible}} />
-                </div>
+            <div className={s.content}>
+                <SideBar setProjectWasDelete={setProjectWasDelete} sideBarIsVisible={sideBarIsVisible}
+                         closeSideBar={closeSideBar}
+                />
+                <Outlet context={{sideBarIsVisible}} />
+            </div>
         </div>
     )
 }

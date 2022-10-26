@@ -12,7 +12,8 @@ import { getAppTheme } from "../../../redux/selectors"
 import { useContextMenu } from "../../../hooks/useContextMenu"
 import CreatingBottom from "./creatingBottom/creatingBottom"
 
-const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditMode, task }) => {
+const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditMode, task, pageElem }) => {
+  
     const dispatch = useAppDispatch()
     const appTheme = useAppSelector(getAppTheme)
     const [ priorityForCreating, setPriorityForCreating ] = useState('none')
@@ -42,7 +43,7 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
             return {
                 projectName,
                 task: {
-                    id: editMode === task.id && task ? task.id : v4(),
+                    id: editMode === task?.id && task ? task.id : v4(),
                     name: values.name,
                     description: values.description,
                     priority: priorityForCreating as taskPriorityType,
@@ -73,6 +74,10 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
                     }
                 }
             }
+            if(setEditMode){
+                setEditMode('')
+            }
+            setAddMode(false)
         }
     }
 
@@ -96,6 +101,7 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
                                     task={task}
                                     project={project}
                                     setAddMode={setAddMode}
+                                    pageElem={pageElem}
                                 />
                 </Form>
             </Formik>
@@ -112,6 +118,7 @@ interface propsType {
     setEditMode?: (editMode: string) => void
     editMode?: string
     task: taskType
+    pageElem: React.RefObject<HTMLDivElement>
 }
 interface valuesType {
     name: string

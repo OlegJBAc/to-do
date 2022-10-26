@@ -1,10 +1,12 @@
 .header{
     height: 50px;
-    // background: linear-gradient(45deg, rgb(68, 0, 255) 40%, white, rgb(115, 8, 255) 60%);
     background: rgb(152, 61, 238);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
     &.light{
         background: rgb(152, 61, 238);
         color: white;

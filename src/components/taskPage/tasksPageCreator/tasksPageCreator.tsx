@@ -35,6 +35,7 @@ const TasksPageCreator = () => {
         }
         return location.pathname.slice(1)
     }
+
     return (
         <div className={s.container} id={sideBarIsVisible ? s.sideBar__visible : s.sideBar__invisible}>
             <Page getCurrentPageTasks={getCurrentPageTasks} currentPage={checkForEncodingCurrentPage()}/>
