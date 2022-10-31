@@ -52,32 +52,34 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
                 } 
             }
         }
-        if(!editMode){
-            if(!defaultPages.includes(project)){
-                dispatch(addTask(getCreateTaskPayload(project)))
-            }else{
-                // @ts-ignore
-                dispatch(addTaskToDefaultPage(getCreateTaskPayload(project)))
-            }
-            setAddMode(false)
-        }else{
-            if(!defaultPages.includes(project) && task){
-                dispatch(editTask(getCreateTaskPayload(task.currentProject)))
-                if(setEditMode){
-                    setEditMode(task.id)
+        if(project !== 'completed'){
+            if(!editMode){
+                if(!defaultPages.includes(project)){
+                    dispatch(addTask(getCreateTaskPayload(project)))
+                }else{
+                    // @ts-ignore
+                    dispatch(addTaskToDefaultPage(getCreateTaskPayload(project)))
                 }
+                setAddMode(false)
             }else{
-                if(task){
-                    dispatch(editDefaultPageTask(getCreateTaskPayload(task.currentProject)))
+                if(!defaultPages.includes(project) && task){
+                    dispatch(editTask(getCreateTaskPayload(task.currentProject)))
                     if(setEditMode){
                         setEditMode(task.id)
                     }
+                }else{
+                    if(task){
+                        dispatch(editDefaultPageTask(getCreateTaskPayload(task.currentProject)))
+                        if(setEditMode){
+                            setEditMode(task.id)
+                        }
+                    }
                 }
+                if(setEditMode){
+                    setEditMode('')
+                }
+                setAddMode(false)
             }
-            if(setEditMode){
-                setEditMode('')
-            }
-            setAddMode(false)
         }
     }
 

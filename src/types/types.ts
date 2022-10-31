@@ -12,4 +12,5 @@ export interface projectsType {
 }
 export interface defaultProjectsType {
     today: taskType[]
+    completed: taskType[]
 }

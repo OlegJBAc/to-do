@@ -23,7 +23,7 @@ const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
     return (
         <div ref={pageElem} className={s.page} id={sideBarIsVisible ? s.sideBarVisible : s.sideBarInvisible}>
             {/* @ts-ignore */}
-            {currentPage !== constAllProjectsTasks && <CreateTask project={currentPage}/>}
+            {currentPage !== constAllProjectsTasks && currentPage !== 'completed' && <CreateTask project={currentPage}/>}
             <div className={s.tasks}>
                 {getCurrentPageTasks() && getCurrentPageTasks().map(task => {
                     return <Task key={v4()} task={task} currentPage={currentPage}

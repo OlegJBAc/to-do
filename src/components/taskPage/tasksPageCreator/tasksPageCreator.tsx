@@ -17,7 +17,7 @@ const TasksPageCreator = () => {
     
     const getCurrentPageTasks = (): taskType[] => {
         const currentPage = checkForEncodingCurrentPage()
-        const defaultPagesNames = ['today']
+        const defaultPagesNames = ['today', 'completed']
         if(!defaultPagesNames.includes(currentPage) && currentPage !== constAllProjectsTasks){
             return projects[currentPage]
         }else{

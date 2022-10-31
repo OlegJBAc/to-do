@@ -14,6 +14,9 @@ const DefaultProjects = () => {
                 <NavLink to='today'>
                     <li>today</li>
                 </NavLink>
+                <NavLink to='completed'>
+                    <li>completed</li>
+                </NavLink>
             </ul>
         </>
     )

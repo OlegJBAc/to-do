@@ -8,4 +8,19 @@
     &__description{
         color: gray;
     }
+    &__content{
+        display: flex;
+        flex-direction: column;
+    }
+}
+.completed{
+    width: 95%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.deleteIcon{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }

@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { defaultProjectsType, taskType } from "../../types/types";
-import { actionOnTask, checkTaskExisting } from "./functionForReducers";
+import { actionOnTask, checkTaskExisting } from "./functionsForReducers";
 
 
 
 
 const initialState = {
     defaultPages: {
-        today: [] as taskType[]
+        today: [] as taskType[],
+        completed: [] as taskType[],
     } as defaultProjectsType
 }
 
@@ -20,14 +21,21 @@ const defaultPagesSlice = createSlice({
                 state.defaultPages = action.payload
             }
         },
-        addTaskToDefaultPage: (state, action: PayloadAction<{ projectName: 'today', task: taskType }>) => {
+        addTaskToDefaultPage: (state, action: PayloadAction<{ projectName: 'today' | 'completed', task: taskType }>) => {
             let { projectName, task } = action.payload
             const isExist = checkTaskExisting(state.defaultPages[projectName], task.name)
-            if(!isExist){
+            const addTask = () => {
                 state.defaultPages[projectName].push(task)
                 localStorage.setItem('defaultPages', JSON.stringify(state.defaultPages))
+            }
+            if(!isExist){
+                addTask()
             }else{
-                console.error('such task already exist')
+                if(projectName !== 'completed'){
+                    console.error('such task already exist')
+                }else{
+                    addTask()
+                }
             }
         },
         deleteDefaultPageTask: (state, action: PayloadAction<{projectName: string, task: taskType}>) => {

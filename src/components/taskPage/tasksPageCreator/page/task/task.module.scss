@@ -7,3 +7,35 @@
     border-bottom: 1px solid rgb(212, 208, 208);
     margin: 0.5em 0em;
 }
+
+.completed{
+    &::before{
+        content: '';
+        display: block;
+        width: 0.8em;
+        height: 0.8em;
+        margin-right: 1em;
+        border-radius: 50%;
+        align-self: center;
+    }
+}
+.none{
+    &::before{
+        background: gray;
+    }
+}
+.red{
+    &::before{
+        background: red;
+    }
+}
+.purple{
+    &::before{
+        background: rgb(147, 13, 209);
+    }
+}
+.orange{
+    &::before{
+        background: orange;
+    }
+}

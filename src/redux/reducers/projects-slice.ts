@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { unescape } from "querystring";
 import { constAllProjectsTasks } from "../../general/constants/constants";
 import { projectsType, taskType } from "../../types/types";
-import { actionOnTask, checkProjectExisting, checkTaskExisting } from "./functionForReducers";
+import { actionOnTask, checkProjectExisting, checkTaskExisting } from "./functionsForReducers";
 
 
 const initialState = {
