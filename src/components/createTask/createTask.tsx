@@ -5,7 +5,7 @@ import NotActiveCreating from "./notActiveCreating/notActiveCreating"
 import { taskType } from "../../types/types"
 
 
-const CreateTask: FC<propsType> = ({ project, editMode, setEditMode, task,  pageElem }) => {
+const CreateTask: FC<propsType> = ({ project, editMode, setEditMode, task, pageElem }) => {
     
     const [addMode, setAddMode] = useState<boolean>()
     return (

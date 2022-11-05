@@ -9,10 +9,12 @@ const CreatingBottom: React.FC<propsType> = ({  setPriorityForCreating, editMode
                                                 setEditMode, pageElem }) => {
     return (
         <div className={s.create__bottom}>
-            <BottomOptions setPriorityForCreating={setPriorityForCreating}
+            {editMode && <BottomOptions setPriorityForCreating={setPriorityForCreating}
                            task={task}
                            project={project}
-                           pageElem={pageElem}/>
+                           pageElem={pageElem}
+                           />
+            }
             <BottomButtons editMode={editMode} setAddMode={setAddMode} setEditMode={setEditMode} task={task}/>
         </div>
     )

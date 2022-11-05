@@ -7,7 +7,7 @@
     form{
         width: 100%;
     }
-    border: 1px solid rgb(210, 205, 205);
+    border: 2px solid gray;
     border-radius: 15px;
     &.light{
         button{
@@ -37,7 +37,20 @@
     }
 
 }
-
+.priority{
+    &__none{
+        border: 2px solid gray;
+    }
+    &__red{
+        border: 2px solid red;
+    }
+    &__purple{
+        border: 2px solid purple;
+    }
+    &__orange{
+        border: 2px solid orange;
+    }
+}
 .forms{
     display: flex;
     flex-direction: column;

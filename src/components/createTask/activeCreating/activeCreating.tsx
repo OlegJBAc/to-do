@@ -82,11 +82,22 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
             }
         }
     }
-
+    const getCurrentPriority = (color: string) => {
+        if(editMode && task.priority === color){
+            return true
+        }if(editMode && priorityForCreating === color){
+            return true
+        }
+        return false
+    }
     return (
         <div className={cx('create', {
             light: appTheme === 'Light',
             dark: appTheme === 'Dark',
+            priority__red: getCurrentPriority('red'),
+            priority__orange: getCurrentPriority('orange'),
+            priority__purple: getCurrentPriority('purple'),
+            priority__none: getCurrentPriority('none'),
         })}>
             <Formik initialValues={{ name: editMode === task?.id && task ? task.name : '', 
                                      description: editMode === task?.id && task ? task.description : '' }} 
