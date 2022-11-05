@@ -77,6 +77,7 @@ export const useContextMenu = ({ coordinatesCustom=coordinatesDefault,
     return { coordinates, setCoordinates, menuParams, localContextMenu, setLocalContextMenu, activateContextMenu }
 }
 
+
 interface useContextMenuType {
     coordinatesCustom?: {
         projectName: string | null

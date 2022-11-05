@@ -12,6 +12,18 @@
         display: flex;
         flex-direction: column;
     }
+    &__time{
+        font-size: 0.7em;
+        &_added{
+            margin-right: 0.5em;
+        }
+        &_date{
+
+        }
+        &_time{
+            margin-left: 0.5em;
+        }
+    }
 }
 .completed{
     width: 95%;
