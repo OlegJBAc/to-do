@@ -31,12 +31,13 @@ const Body: FC<propsType> = ({ task, isCompleted, currentPage }) => {
             <div className={s.body__content}>
                 <span className={s.body__name}>{task.name}</span>
                 <span className={s.body__description}>{task.description}</span>
-                <div className={s.body__time}>
-                    <span className={s.body__time_added}>Added at</span>
-                    <span className={s.body__time_date}>{ getFormattedDate(task.addedAt).date }</span>
-                    <span className={s.body__time_time}>{ getFormattedDate(task.addedAt).time }</span>
-                </div>
-
+                { isCompleted && 
+                    <div className={s.body__time}>
+                        <span className={s.body__time_added}>Added at</span>
+                        <span className={s.body__time_date}>{ getFormattedDate(task.addedAt).date }</span>
+                        <span className={s.body__time_time}>{ getFormattedDate(task.addedAt).time }</span>
+                    </div>
+                }
             </div>
             {isCompleted && 
                 <DeleteIcon className={s.deleteIcon} onClick={deleteTaskFunc}/>
