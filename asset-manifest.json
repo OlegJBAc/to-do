@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/my-todo/static/css/main.74f98032.css",
-    "main.js": "/my-todo/static/js/main.13b2831b.js",
+    "main.css": "/my-todo/static/css/main.9c1fe782.css",
+    "main.js": "/my-todo/static/js/main.1de43c35.js",
     "static/media/loader.gif": "/my-todo/static/media/loader.6abaf74a362f68711135.gif",
     "static/media/priorityIcon.svg": "/my-todo/static/media/priorityIcon.bc29d7f8fc2de1df7afa40247047a0d0.svg",
     "static/media/deleteIcon.svg": "/my-todo/static/media/deleteIcon.8618c2a5c71beb2ff7abcf855f43115e.svg",
@@ -10,11 +10,11 @@
     "static/media/threeDots.svg": "/my-todo/static/media/threeDots.47158f33ecec8a16908970da260eb365.svg",
     "index.html": "/my-todo/index.html",
     "static/media/onlyPlus.svg": "/my-todo/static/media/onlyPlus.3e50e7e12fbb383baff721b930e3179a.svg",
-    "main.74f98032.css.map": "/my-todo/static/css/main.74f98032.css.map",
-    "main.13b2831b.js.map": "/my-todo/static/js/main.13b2831b.js.map"
+    "main.9c1fe782.css.map": "/my-todo/static/css/main.9c1fe782.css.map",
+    "main.1de43c35.js.map": "/my-todo/static/js/main.1de43c35.js.map"
   },
   "entrypoints": [
-    "static/css/main.74f98032.css",
-    "static/js/main.13b2831b.js"
+    "static/css/main.9c1fe782.css",
+    "static/js/main.1de43c35.js"
   ]
 }
