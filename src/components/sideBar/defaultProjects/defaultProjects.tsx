@@ -7,11 +7,15 @@ import { ReactComponent as AllTasksIcon } from '../../../general/svgs/allTasksIc
 import { ReactComponent as TodayIcon } from '../../../general/svgs/todayIcon.svg'
 import { ReactComponent as CompletedIcon } from '../../../general/svgs/completedIcon.svg'
 import { useAppSelector } from "../../../hooks/hooks"
-import { getAppTheme } from "../../../redux/selectors"
+import { getAppLanguage, getAppTheme } from "../../../redux/selectors"
+import { engText } from "../../../general/textData/eng"
+import { ruText } from "../../../general/textData/ru"
 
 
 const DefaultProjects = () => {
-    const appTheme = useAppSelector(getAppTheme) 
+    const appTheme = useAppSelector(getAppTheme)
+    const appLanguage = useAppSelector(getAppLanguage)
+    
     const cx = cnBind.bind(s)
 
     return(
@@ -23,19 +27,28 @@ const DefaultProjects = () => {
                 <NavLink to={constAllProjectsTasks}>
                     <li>
                         <AllTasksIcon/>
-                        <span>{constAllProjectsTasks}</span>
+                        <span>
+                            { appLanguage === 'Eng' ? engText.sideBar.defaultProjectsItems.allProjectsTasks 
+                                                    : ruText.sideBar.defaultProjectsItems.allProjectsTasks }
+                        </span>
                     </li>
                 </NavLink>
                 <NavLink to='today'>
                     <li>
                         <TodayIcon/>
-                        <span>today</span>
+                        <span>
+                            { appLanguage === 'Eng' ? engText.sideBar.defaultProjectsItems.today 
+                                                    : ruText.sideBar.defaultProjectsItems.today }
+                        </span>
                     </li>
                 </NavLink>
                 <NavLink to='completed'>
                     <li>
                         <CompletedIcon/>
-                        <span>completed</span>
+                        <span>
+                            { appLanguage === 'Eng' ? engText.sideBar.defaultProjectsItems.completed 
+                                                    : ruText.sideBar.defaultProjectsItems.completed }
+                        </span>
                     </li>
                 </NavLink>
             </ul>

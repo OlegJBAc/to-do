@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks"
-import { getAppTheme, getProjectsNames } from "../../../redux/selectors"
+import { getAppLanguage, getAppTheme, getProjectsNames } from "../../../redux/selectors"
 import { ContextMenuBody, ContextMenuStyles } from "../../contextMenu/contextMenu"
 import s from './myProjects.module.scss'
 import { v4 } from 'uuid'
@@ -11,6 +11,8 @@ import { useContextMenu } from "../../../hooks/useContextMenu"
 import { setContextMenuActive } from "../../../redux/reducers/app-slice"
 import AddProject from "../createProject/addProject"
 import { ReactComponent as OnlyPlus } from '../../../general/svgs/onlyPlus.svg'
+import { engText } from "../../../general/textData/eng"
+import { ruText } from "../../../general/textData/ru"
 
 
 
@@ -28,9 +30,13 @@ const DeleteButton: FC<any> = ({ projectName, setProjectWasDelete}) => {
 const MyProjects: FC<propsType> = ({ setProjectWasDelete }) => {
     const [isProjectCreating, setIsProjectCreating] = useState(false)
     const dispatch = useAppDispatch()
+
     const navigate = useNavigate()
+
     const appTheme = useAppSelector(getAppTheme)
+    const appLanguage = useAppSelector(getAppLanguage)
     const projectsNames = useAppSelector(getProjectsNames)
+
     const cx = cnBind.bind(s)
     
     const { coordinates, 
@@ -59,7 +65,7 @@ const MyProjects: FC<propsType> = ({ setProjectWasDelete }) => {
     return(
         <>
             <div className={s.projects__header}>
-                <h2>My Projects</h2>
+                <h2>{ appLanguage === 'Eng' ? engText.sideBar.myProjectsHeader : ruText.sideBar.myProjectsHeader }</h2>
                 <button id={s.create__projectBtn} onClick={startOrEndProjectCreating(true)}>
                     <OnlyPlus className={s.onlyPlus}/>
                 </button>

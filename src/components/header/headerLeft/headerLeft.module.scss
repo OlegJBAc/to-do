@@ -1,3 +1,10 @@
+.headerLeft{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .sideBarVis__btn{
     width: 35px;
     height: 35px;
@@ -67,5 +74,22 @@
             margin-top: -1px;
             transform: rotate(-45deg);
         }
+    }
+}
+
+.language__toggle{
+    padding: 5px 10px;
+    margin-right: 2em;
+    border-radius: 0.4em;
+    width: 60px;
+    cursor: pointer;
+    &.light{
+        color: black;
+        background: rgb(228, 225, 225) !important;
+    }
+    &.dark{
+        color: white;
+        background: black !important;
+        box-shadow: inset 0px 0px 5px white;
     }
 }

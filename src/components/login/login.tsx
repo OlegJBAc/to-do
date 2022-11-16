@@ -7,14 +7,18 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { constAllProjectsTasks } from "../../general/constants/constants"
 import cn from 'classnames'
 import cnBind from 'classnames/bind'
-import { getAppTheme } from "../../redux/selectors"
+import { getAppLanguage, getAppTheme } from "../../redux/selectors"
+import { engText } from "../../general/textData/eng"
+import { ruText } from "../../general/textData/ru"
 
 
 const Login = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const location = useLocation()
-    const appTheme = useAppSelector(getAppTheme) 
+    const appTheme = useAppSelector(getAppTheme)
+    const appLanguage = useAppSelector(getAppLanguage) 
+
     const cx = cnBind.bind(s)
     const submit = (values: valuesType, { setSubmitting }: submitType ) => {
         dispatch(logInThunk({ email: values.email, 
@@ -54,7 +58,12 @@ const Login = () => {
                                                 <input className={s.checkbox__input} type={'checkbox'} 
                                                     id={s.checkbox}/>
                                                 <label className={s.checkbox__label}
-                                                    htmlFor={s.checkbox}><span>Remember me</span></label>
+                                                    htmlFor={s.checkbox}>
+                                                    <span>
+                                                       { appLanguage === 'Eng' ? engText.login.rememberMe 
+                                                                               : ruText.login.rememberMe }
+                                                    </span>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +73,9 @@ const Login = () => {
                                     </div> */}
                                 </div>
                                 <button type="submit" disabled={isSubmitting}>
-                                    <span>Sign in</span>
+                                    <span>
+                                        { appLanguage === 'Eng' ? engText.login.signIn : ruText.login.signIn }
+                                    </span>
                                 </button>
                             </div>
                         </Form>

@@ -1,8 +1,7 @@
-.header{
-    &__right{
-        display: flex;
-        align-items: center;
-    }
+.headerRight{
+    width: 25%;
+    display: flex;
+    align-items: center;
 }
 
 .logOut__button{

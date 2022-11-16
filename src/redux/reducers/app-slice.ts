@@ -5,7 +5,8 @@ const initialState = {
     appInitialized: false as boolean,
     contextMenuActive: false as boolean,
     authData: {},
-    theme: 'light' as 'Light' | 'Dark'
+    theme: 'Light' as 'Light' | 'Dark',
+    language: 'Ru' as 'Ru' | 'Eng',
 }
 
 export const getAuthDataThunk = createAsyncThunk(
@@ -29,6 +30,15 @@ const appSlice = createSlice({
             localStorage.setItem('theme', action.payload)
             state.theme = action.payload
         },
+        appLanguageInitializing: (state, action: PayloadAction<'Ru' | 'Eng' | null>) => {
+            if(action.payload){
+                state.language = action.payload
+            }
+        },
+        changeAppLanguage: (state, action: PayloadAction<'Ru' | 'Eng'>) => {
+            localStorage.setItem('language', action.payload)
+            state.language = action.payload
+        },
         setAppInitialized: (state, action: PayloadAction<boolean>) => {
             state.appInitialized = action.payload
         },
@@ -45,6 +55,7 @@ const appSlice = createSlice({
 })
 
 
-export const { setAppInitialized, setContextMenuActive, appThemeInitializing, changeAppTheme } = appSlice.actions
+export const { setAppInitialized, setContextMenuActive, appThemeInitializing, changeAppTheme,
+               appLanguageInitializing, changeAppLanguage } = appSlice.actions
 
 export default appSlice.reducer

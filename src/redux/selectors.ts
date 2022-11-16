@@ -22,3 +22,6 @@ export const getAuthData = (state: rootStateType) => {
 export const getAppTheme = (state: rootStateType) => {
     return state.appReducer.theme
 }
+export const getAppLanguage = (state: rootStateType) => {
+    return state.appReducer.language
+}

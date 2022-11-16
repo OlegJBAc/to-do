@@ -17,6 +17,10 @@ const defaultPagesSlice = createSlice({
     initialState: initialState,
     reducers: {
         defaultPagesInitialize: (state, action: PayloadAction<defaultProjectsType>) => {
+            const actionPayload = {}
+            action.payload['today'] = action.payload['today'].filter(task => {
+                return task.addedAt.substr(8, 2) === new Date().toLocaleString().substr(3, 2)
+            })
             if(action.payload){
                 state.defaultPages = action.payload
             }

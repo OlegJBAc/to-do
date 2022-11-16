@@ -1,4 +1,4 @@
-import { appThemeInitializing } from "../../redux/reducers/app-slice"
+import { appLanguageInitializing, appThemeInitializing } from "../../redux/reducers/app-slice"
 import { defaultPagesInitialize } from "../../redux/reducers/defaultPages-slice"
 import { allProjectsTasksInitialize, projectsTasksInitialize } from "../../redux/reducers/projects-slice"
 import { appDispatchType } from "../../redux/store"
@@ -27,10 +27,16 @@ export const initialLocalStorage = (dispatch: appDispatchType) => {
       }
     }
   })
+  
   if(!localStorageKeys.includes('theme')){
     localStorage.setItem('theme', 'Light')
   }else{
     dispatch(appThemeInitializing(localStorage.getItem('theme') as 'Light' | 'Dark' | null))
+  }
+  if(!localStorageKeys.includes('language')){
+    localStorage.setItem('language', 'Ru')
+  }else{
+    dispatch(appLanguageInitializing(localStorage.getItem('language') as 'Ru' | 'Eng' | null))
   }
   const projects: string | null = localStorage.getItem('projects')
   const defaultPages: string | null = localStorage.getItem('defaultPages')
