@@ -1,20 +1,23 @@
 {
   "files": {
-    "main.css": "/my-todo/static/css/main.9c1fe782.css",
-    "main.js": "/my-todo/static/js/main.1de43c35.js",
+    "main.css": "/my-todo/static/css/main.0bc9eef5.css",
+    "main.js": "/my-todo/static/js/main.c5ef89e7.js",
     "static/media/loader.gif": "/my-todo/static/media/loader.6abaf74a362f68711135.gif",
+    "static/media/completedIcon.svg": "/my-todo/static/media/completedIcon.14a4f2917170b7b5ea7f7caddc7d6a20.svg",
     "static/media/priorityIcon.svg": "/my-todo/static/media/priorityIcon.bc29d7f8fc2de1df7afa40247047a0d0.svg",
     "static/media/deleteIcon.svg": "/my-todo/static/media/deleteIcon.8618c2a5c71beb2ff7abcf855f43115e.svg",
+    "static/media/allTasksIcon.svg": "/my-todo/static/media/allTasksIcon.da35aa657de7b636c621280af920929a.svg",
     "static/media/plusIcon.svg": "/my-todo/static/media/plusIcon.1da56f7913dc47ac56ab59fc638687cf.svg",
+    "static/media/todayIcon.svg": "/my-todo/static/media/todayIcon.2cee3d89302044c09cf470942dff3d5f.svg",
     "static/media/penIcon.svg": "/my-todo/static/media/penIcon.29db878fd87c921e717f4ea9c72caa3f.svg",
     "static/media/threeDots.svg": "/my-todo/static/media/threeDots.47158f33ecec8a16908970da260eb365.svg",
     "index.html": "/my-todo/index.html",
     "static/media/onlyPlus.svg": "/my-todo/static/media/onlyPlus.3e50e7e12fbb383baff721b930e3179a.svg",
-    "main.9c1fe782.css.map": "/my-todo/static/css/main.9c1fe782.css.map",
-    "main.1de43c35.js.map": "/my-todo/static/js/main.1de43c35.js.map"
+    "main.0bc9eef5.css.map": "/my-todo/static/css/main.0bc9eef5.css.map",
+    "main.c5ef89e7.js.map": "/my-todo/static/js/main.c5ef89e7.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c1fe782.css",
-    "static/js/main.1de43c35.js"
+    "static/css/main.0bc9eef5.css",
+    "static/js/main.c5ef89e7.js"
   ]
 }
