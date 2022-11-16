@@ -38,6 +38,7 @@ const ActiveCreating: FC<propsType> = ({ project, setAddMode, editMode, setEditM
     }, [localContextMenu])
     
     const submit = (values: valuesType, { setSubmitting }: submittingType) => {
+        
         const defaultPages = constDefaultPages
         const getCreateTaskPayload = (projectName: string) => {
             return {

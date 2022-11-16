@@ -29,8 +29,7 @@ const HeaderRight: React.FC<propsType> = ({  }) => {
             <button className={cx('theme__toggle', {
                         light: appTheme === 'Light',
                         dark: appTheme === 'Dark',
-                })}
-            onClick={changeTheme}>
+                })} onClick={changeTheme}>
             </button>
             <button className={s.logOut__button} onClick={logOut}>
                 <span>LogOut</span>

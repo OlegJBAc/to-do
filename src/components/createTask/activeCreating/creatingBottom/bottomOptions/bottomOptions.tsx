@@ -17,9 +17,13 @@ const BottomOptions: React.FC<propsType> = ({ setPriorityForCreating, task, proj
         activateContextMenu,
     } = useContextMenu({ sideBarIsVisible, isPageContent: true, htmlElem: pageElem, contextElem: 'setPriority' })
 
+    const click = (e: any) => {
+        e.preventDefault()
+        activateContextMenu(null, e)
+    }
     return (
         <div className={s.create__options}>
-                <button id={s.create__options_btn} onClick={(e: any) => activateContextMenu(null, e)}>
+                <button id={s.create__options_btn} onClick={click}>
                     <PriorityIcon className={s.priority__icon}/>
                 </button>
                 {localContextMenu && 

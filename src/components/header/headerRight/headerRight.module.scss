@@ -6,12 +6,12 @@
 }
 
 .logOut__button{
-    padding: 0.3em 1em;
+    padding: 0.6em 2.5em;
     margin-right: 3em;
-    border: 1px solid rgba(255, 255, 255, 0.411);
+    border-radius: 0.3em;
     background: linear-gradient(45deg, rgba(0, 0, 255, 0.616), rgba(210, 213, 236, 0.336), purple);
     color: white;
-    box-shadow: inset 0px 0px 3px rgb(184, 172, 192);
+    box-shadow: inset 0px 0px 11px rgb(184, 172, 192);
     cursor: pointer;
 }
 .theme__toggle{

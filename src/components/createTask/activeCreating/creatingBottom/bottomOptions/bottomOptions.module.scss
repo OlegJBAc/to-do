@@ -1,14 +1,27 @@
 .priority{
     &__icon{
+        position: absolute;
         color: black;
-        width: 15px;
-        margin-left: 7px;
+        width: 18px;
+        top: 0px;
+        left: 7px;
         cursor: pointer;
     }
+    &__icon:hover{
+        width: 21px;
+    }
 }
-
+.create__options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.5em;
+}
 #create__options{
     &_btn{
+        position: relative;
+        width: 20px;
+        height: 20px;
         background: rgba(0, 0, 0, 0) !important;
         outline: none;
         border: none;

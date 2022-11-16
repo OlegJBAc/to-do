@@ -3,7 +3,7 @@ import { Field, Form, Formik } from "formik"
 import s from './login.module.scss'
 import { logInThunk } from "../../redux/reducers/auth-slice"
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { constAllProjectsTasks } from "../../general/constants/constants"
 import cn from 'classnames'
 import cnBind from 'classnames/bind'
@@ -13,6 +13,7 @@ import { getAppTheme } from "../../redux/selectors"
 const Login = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
     const appTheme = useAppSelector(getAppTheme) 
     const cx = cnBind.bind(s)
     const submit = (values: valuesType, { setSubmitting }: submitType ) => {
@@ -22,7 +23,7 @@ const Login = () => {
                               captcha: '' }))
                 .then(res => {
                     if(res.payload.resultCode === 0){
-                        navigate(constAllProjectsTasks)
+                        navigate(`/${constAllProjectsTasks}`)
                     }
                 })
         setSubmitting(false)
