@@ -3,13 +3,23 @@
     margin-right: 10px;
     &_wrap{
         display: flex;
+        justify-content: flex-end;
     }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 430px) {
     .submit__button{
          &_wrap{
             flex-wrap: wrap;
+         }
+     }
+}
+@media screen and (max-width: 340px) {
+    .submit__button{
+         &_wrap{
+            button{
+                font-size: 0.9rem;
+            }
          }
      }
 }

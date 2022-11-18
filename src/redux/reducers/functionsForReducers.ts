@@ -14,6 +14,7 @@ export const checkTaskExisting = (project: taskType[], taskName: string) => {
     }
     return isExist
 }
+
 export const checkProjectExisting = (projects: projectsType, projectName: string) => {
     const projectsKeys = Object.keys(projects)
     return projectsKeys.includes(projectName) ? true : false

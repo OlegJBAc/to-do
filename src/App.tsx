@@ -6,7 +6,7 @@ import Login from './components/login/login';
 import MainLayout from './components/mainLayout/mainLayout';
 import NotFound from './components/notFound/notFound';
 import TasksPageCreator from './components/taskPage/tasksPageCreator/tasksPageCreator';
-import { initialLocalStorage } from './general/initializationApp/initializationApp';
+import { initialLocalStorageAndState } from './general/initializationApp/initializationApp';
 import { Loader } from './general/loader/loader';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
 import { getAuthDataThunk, setAppInitialized } from './redux/reducers/app-slice';
@@ -21,20 +21,20 @@ const App = () => {
 
   // ***===========================================APP INITIALIZATION===========================================*** //
   useEffect(() => {
-      initialLocalStorage(dispatch)
-      dispatch(getAuthDataThunk()).then(res => {
-        if(res.payload.resultCode !== 0){
-          navigate('login', { replace: true })
-        }else{
-          dispatch(setAppInitialized(true))
-        }
-      })
-    }, [])
-    useEffect(() => {
-      if(location.pathname.slice(1) === 'login'){
+    initialLocalStorageAndState(dispatch)
+    dispatch(getAuthDataThunk()).then(res => {
+      if(res.payload.resultCode !== 0){
+        navigate('login', { replace: true })
+      }else{
         dispatch(setAppInitialized(true))
       }
-    }, [location.pathname])
+    })
+  }, [])
+  useEffect(() => {
+    if(location.pathname.slice(1) === 'login'){
+      dispatch(setAppInitialized(true))
+    }
+  }, [location.pathname])
   // ***===========================================APP INITIALIZATION===========================================*** //
 
   if(!appInitialized){

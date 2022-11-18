@@ -23,4 +23,9 @@ export const engText = {
         editTaskBtn: 'Edit',
         cancelBtn: 'Cancel',
     },
+    contextMenu: {
+        editTaskBtn: 'Edit task',
+        deleteTaskBtn: 'Delete task',
+        setPriorityHeader: 'Set priority',
+    },
 }

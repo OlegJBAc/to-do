@@ -1,8 +1,9 @@
 .headerRight{
-    width: 25%;
+    width: 35%;
     display: flex;
     align-items: center;
 }
+
 
 .logOut__button{
     padding: 0.6em 2.5em;
@@ -54,8 +55,29 @@
     }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1200px) {
     .theme__toggle{
-        margin-right: 2.5em;
+        margin-right: 3.5em;
+    }
+}
+@media screen and (max-width: 768px){
+    .headerRight{
+        width: 50%;
+    }
+    .theme__toggle{
+        margin-right: 2em;
+    }
+}
+
+@media screen and (max-width: 540px){
+    .headerRight{
+        width: 65%;
+    }
+    .theme__toggle{
+        margin-right: 0.5rem;
+    }
+    .logOut__button{
+        padding: 0.4em 1.5em;
+        margin-right: 0.3rem;
     }
 }

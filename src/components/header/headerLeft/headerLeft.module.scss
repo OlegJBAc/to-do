@@ -1,10 +1,22 @@
 .headerLeft{
-    width: 75%;
+    width: 65%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
+@media screen and (max-width: 768px){
+    .headerLeft{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 540px){
+    .headerLeft{
+        width: 35%;
+    }
+    .language__toggle{
+        margin-left: 0.8rem;
+    }
+}
 .sideBarVis__btn{
     width: 35px;
     height: 35px;

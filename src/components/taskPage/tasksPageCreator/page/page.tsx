@@ -6,9 +6,14 @@ import Task from "./task/task"
 import { v4 } from 'uuid'
 import { constAllProjectsTasks } from "../../../../general/constants/constants"
 import { useOutletContext } from "react-router-dom"
+import { checkTodayTasks } from "../../../../redux/reducers/defaultPages-slice"
+import { useAppDispatch } from "../../../../hooks/hooks"
+
 
 
 const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
+    const dispatch = useAppDispatch()
+
     const { sideBarIsVisible } = useOutletContext<{ sideBarIsVisible: boolean }>()
     const [contextMenuActive, setContextMenuActive] = useState<null | string>(null)
     const [editMode, setEditMode] = useState<string>('')
@@ -19,6 +24,12 @@ const Page: FC<propsType> = ({ getCurrentPageTasks, currentPage }) => {
             setContextMenuActive('')
         }
     }, [getCurrentPageTasks])
+
+    useEffect(() => {
+        if(currentPage === 'today'){
+            dispatch(checkTodayTasks())
+        }
+    }, [currentPage])
 
     return (
         <div ref={pageElem} className={s.page} id={sideBarIsVisible ? s.sideBarVisible : s.sideBarInvisible}>

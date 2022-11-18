@@ -23,4 +23,9 @@ export const ruText = {
         editTaskBtn: 'Редактировать',
         cancelBtn: 'Отменить',
     },
+    contextMenu: {
+        editTaskBtn: 'Редактировать',
+        deleteTaskBtn: 'Удалить',
+        setPriorityHeader: 'Приоритетность',
+    },
 }

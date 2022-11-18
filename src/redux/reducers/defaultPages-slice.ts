@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { constAllProjectsTasks } from "../../general/constants/constants";
 import { defaultProjectsType, taskType } from "../../types/types";
 import { actionOnTask, checkTaskExisting } from "./functionsForReducers";
 
@@ -17,10 +18,6 @@ const defaultPagesSlice = createSlice({
     initialState: initialState,
     reducers: {
         defaultPagesInitialize: (state, action: PayloadAction<defaultProjectsType>) => {
-            const actionPayload = {}
-            action.payload['today'] = action.payload['today'].filter(task => {
-                return task.addedAt.substr(8, 2) === new Date().toLocaleString().substr(3, 2)
-            })
             if(action.payload){
                 state.defaultPages = action.payload
             }
@@ -51,16 +48,36 @@ const defaultPagesSlice = createSlice({
         setPriorityDefaultPageTask: (state, action: PayloadAction<{ projectName: string, task: taskType }>) => {
             actionOnTask(state, 'setPriority', action.payload)
         },
+        checkTodayTasks: (state) => {
+            const currentDate = new Date().toLocaleString().substr(3, 2)
+            const allProjectsTasks: taskType[] = JSON.parse(localStorage.getItem(`${constAllProjectsTasks}`) as string)
+            const defaultPages: projectType = JSON.parse(localStorage.getItem('defaultPages') as string)
+            const todayTasks = [...defaultPages['today']]
+                  .filter(task => task.currentProject === 'today' && task.addedAt.substr(8, 2) === currentDate)
+                  
+            if(allProjectsTasks.length > 0){
+              allProjectsTasks.forEach(task => {
+                if(task.addedAt.substr(8, 2) === currentDate){
+                  todayTasks.push(task)
+                }
+              })
+            }
+            defaultPages['today'] = todayTasks
+            localStorage.setItem('defaultPages', JSON.stringify(defaultPages))
+            state.defaultPages.today = todayTasks
+        },
+          
     }
 })
 
 
 export const { defaultPagesInitialize, addTaskToDefaultPage, deleteDefaultPageTask, editDefaultPageTask, 
-               setPriorityDefaultPageTask } = defaultPagesSlice.actions
+               setPriorityDefaultPageTask, checkTodayTasks } = defaultPagesSlice.actions
 
 export default defaultPagesSlice.reducer
 
 
 export type defaultPagesStateType = typeof initialState
-
-
+interface projectType {
+    [key: string]: taskType[]
+  }
